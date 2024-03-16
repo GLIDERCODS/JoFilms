@@ -1402,14 +1402,6 @@ header .logo:hover {
         -webkit-transition: all 0.5s ease-in-out;
         transition: all 0.5s ease-in-out;
     }
-    .sidebar-open .main-wrapper {
-        left: 320px;
-        overflow: visible;
-    }
-    .sidebar-open .main-wrapper::before {
-        opacity: 1;
-        visibility: visible;
-    }
     .mob-nav-close {
         display: -webkit-box;
         display: -ms-flexbox;

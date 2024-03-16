@@ -751,7 +751,7 @@ header .logo:hover {
     background: #fff !important;
 }
 .color_section{
-    background-color: #FCF7E9!important;
+    background-color: #FCF9F1!important;
 }
 @media only screen and (max-width: 1199px) {
     .wiso-top-social {
@@ -3150,7 +3150,7 @@ header .logo:hover {
 
     #footer{
         display: block;
-        background-color: #FCF7E9;
+        background-color: #FCF9F1;
         width: 100%;
         margin: auto;
         min-height: 40px;
@@ -4317,7 +4317,7 @@ body,
 .single-post .single-content .swiper-container,
 .events-single-content.protected-page input[type="password"],
 .single-portfolio .protected-page input[type="password"] {
-    border-bottom-color: #FCF7E9;
+    border-bottom-color: #FCF9F1;
 }
 
 
@@ -4326,7 +4326,7 @@ body,
 
 
 #footer.simple {
-    background-color: #FCF7E9;
+    background-color: #FCF9F1;
 }
 
 #footer .footer-bottom-wrap {
@@ -5627,7 +5627,7 @@ div#grid-3120, div#grid-3190, div#grid-4045{
     height: auto!important;
 }
 .bg-color{
-    background-color: #FCF7E9 !important;
+    background-color: #FCF9F1 !important;
 }
 .bg_black{
     background-color: #222222 !important;
