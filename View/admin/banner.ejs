@@ -1,82 +1,325 @@
 <%-include("../admin/leyouts/header.ejs")%>
+  <style>
+    .container {
+      padding: 50px 10%;
+    }
 
+    .box {
+      position: relative;
+      background: #ffffff;
+      width: 100%;
+    }
 
-<div class="main-content">
+    .box-header {
+      color: #444;
+      display: block;
+      padding: 10px;
+      position: relative;
+      border-bottom: 1px solid #f4f4f4;
+      margin-bottom: 10px;
+    }
+
+    .box-tools {
+      position: absolute;
+      right: 10px;
+      top: 5px;
+    }
+
+    .dropzone-wrapper {
+      border: 2px dashed #91b0b3;
+      color: #92b0b3;
+      position: relative;
+      height: 150px;
+    }
+
+    .dropzone-desc {
+      position: absolute;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      text-align: center;
+      width: 40%;
+      top: 50px;
+      font-size: 16px;
+    }
+
+    .dropzone,
+    .dropzone:focus {
+      position: absolute;
+      outline: none !important;
+      width: 100%;
+      height: 150px;
+      cursor: pointer;
+      opacity: 0;
+    }
+
+    .dropzone-wrapper:hover,
+    .dropzone-wrapper.dragover {
+      background: #ecf0f5;
+    }
+
+    .preview-zone {
+      text-align: center;
+    }
+
+    .preview-zone .box {
+      box-shadow: none;
+      border-radius: 0;
+      margin-bottom: 0;
+    }
+  </style>
+
+  <div class="main-content">
 
     <div class="page-content">
-        <div class="container-fluid">
+      <div class="container-fluid">
 
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Form File Upload</h4>
-
-                        <div class="page-title-right">
-                            <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                                <li class="breadcrumb-item active">Form File Upload</li>
-                            </ol>
-                        </div>
-
-                    </div>
-                </div>
+        <!-- start page title -->
+        <div class="row">
+          <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0">Form File Upload</h4>
             </div>
-            <!-- end page title -->
+          </div>
+        </div>
+        <!-- end page title -->
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-
-                            <h4 class="card-title">Dropzone</h4>
-                            <p class="card-title-desc">DropzoneJS is an open source library
-                                that provides drag’n’drop file uploads with image previews.
-                            </p>
-
-                            <div>
-                                <form action="#" class="dropzone">
-                                    <div class="fallback">
-                                        <input name="file" type="file" multiple="multiple">
-                                    </div>
-                                    <div class="dz-message needsclick">
-                                        <div class="mb-3">
-                                            <i class="display-4 text-muted mdi mdi-cloud-upload-outline"></i>
-                                        </div>
-                                        
-                                        <h4>Drop files here to upload</h4>
-                                    </div>
-                                </form>
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <section>
+                  <form id="imageForm" action="" method="POST" enctype="multipart/form-data">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <div class="dropzone-wrapper">
+                              <div class="dropzone-desc">
+                                <i class="glyphicon glyphicon-download-alt"></i>
+                                <p>Choose an image file or drag it here.</p>
+                              </div>
+                              <input id="imageInput" type="file" name="image" accept="image/*" class="dropzone">
                             </div>
-
-                            <div class="text-center mt-4">
-                                <button type="button" class="btn btn-primary waves-effect waves-light">Send Files</button>
-                            </div>
+                          </div>
                         </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <button type="button" id="addBanner" class="btn btn-primary pull-right">Upload</button>
+                        </div>
+                      </div>
                     </div>
-                </div> <!-- end col -->
-            </div> <!-- end row -->
+                  </form>
+                </section>
 
-        </div> <!-- container-fluid -->
+
+              </div>
+            </div>
+          </div> <!-- end col -->
+        </div> <!-- end row -->
+
+      </div> <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
-    
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6">
-                    <script>document.write(new Date().getFullYear())</script> © Upzet.
-                </div>
-                <div class="col-sm-6">
-                    <div class="text-sm-end d-none d-sm-block">
-                        Crafted with <i class="mdi mdi-heart text-danger"></i> by <a href="https://1.envato.market/themesdesign" target="_blank">Themesdesign</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    
-</div>
-<!-- end main content-->
 
-<%-include("../admin/leyouts/footer.ejs")%>
+    <footer class="footer">
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-sm-6">
+            <div class="text-sm-end d-none d-sm-block">
+              Crafted with <i class="mdi mdi-heart text-danger"></i> by <a>BashOps</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <!-- end main content-->
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Your JavaScript code here
+      document.getElementById("addBanner").addEventListener("click", async function (e) {
+        e.preventDefault();
+
+        const imageInput = document.getElementById("imageInput");
+
+        const image = imageInput.files.length > 0 ? imageInput.files[0] : null;
+
+
+
+        if (!image) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Banner image is required.'
+          });
+        } else {
+          try {
+            // Compress image
+            const compressedImage = await compressImage(image);
+
+            const formData = new FormData();
+            formData.append("image", compressedImage);
+
+            // Send compressed image data to the server
+            const response = await axios.post("/admin/addBanner", formData, {
+              headers: {
+                "Content-Type": "multipart/form-data"
+              }
+            });
+
+            if (response.data.imageIssue) {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Sorry, your image has some issue. Please try again.'
+              });
+            } else if (response.data.success) {
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+              })
+
+              Toast.fire({
+                icon: 'success',
+                title: 'Banner Added.'
+              })
+              setTimeout(() => {
+                window.location.href = "/admin/banner"
+              }, 3000);
+            }
+          } catch (error) {
+            console.error('Error uploading image:', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Sorry, there was an error uploading the image. Please try again.'
+            });
+          }
+        }
+      });
+    });
+
+
+    // Function to compress image using client-side resizing
+    async function compressImage(imageFile) {
+      const maxSize = 1024; // Maximum file size in KB
+      const maxHeight = 800; // Maximum height in pixels
+
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+
+      // Load image
+      const image = new Image();
+      const reader = new FileReader();
+
+      reader.readAsDataURL(imageFile);
+
+      return new Promise((resolve, reject) => {
+        reader.onload = function (event) {
+          image.src = event.target.result;
+
+          image.onload = function () {
+            let width = image.width;
+            let height = image.height;
+
+            // Calculate new width and height to maintain aspect ratio
+            if (width > height) {
+              if (width > maxHeight) {
+                height *= maxHeight / width;
+                width = maxHeight;
+              }
+            } else {
+              if (height > maxHeight) {
+                width *= maxHeight / height;
+                height = maxHeight;
+              }
+            }
+
+            // Set canvas dimensions
+            canvas.width = width;
+            canvas.height = height;
+
+            // Draw image on canvas
+            context.drawImage(image, 0, 0, width, height);
+
+            // Convert canvas to blob
+            canvas.toBlob((blob) => {
+              resolve(blob);
+            }, 'image/jpeg', 0.8); // JPEG quality: 0.8
+          };
+
+          image.onerror = function (error) {
+            reject(error);
+          };
+        };
+
+        reader.onerror = function (error) {
+          reject(error);
+        };
+      });
+    }
+  </script>
+  <script>
+    function readFile(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          var htmlPreview =
+            '<img width="200" src="' + e.target.result + '" />' +
+            '<p>' + input.files[0].name + '</p>';
+          var wrapperZone = $(input).parent();
+          var previewZone = $(input).parent().parent().find('.preview-zone');
+          var boxZone = $(input).parent().parent().find('.preview-zone').find('.box').find('.box-body');
+
+          wrapperZone.removeClass('dragover');
+          previewZone.removeClass('hidden');
+          boxZone.empty();
+          boxZone.append(htmlPreview);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function reset(e) {
+      e.wrap('<form>').closest('form').get(0).reset();
+      e.unwrap();
+    }
+
+    $(".dropzone").change(function () {
+      readFile(this);
+    });
+
+    $('.dropzone-wrapper').on('dragover', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      $(this).addClass('dragover');
+    });
+
+    $('.dropzone-wrapper').on('dragleave', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      $(this).removeClass('dragover');
+    });
+
+    $('.remove-preview').on('click', function () {
+      var boxZone = $(this).parents('.preview-zone').find('.box-body');
+      var previewZone = $(this).parents('.preview-zone');
+      var dropzone = $(this).parents('.form-group').find('.dropzone');
+      boxZone.empty();
+      previewZone.addClass('hidden');
+      reset(dropzone);
+    });
+
+  </script>
+
+  <%-include("../admin/leyouts/footer.ejs")%>

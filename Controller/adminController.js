@@ -49,19 +49,13 @@ const loadAdminPage = async(req,res)=>{
     }
 }
 
-/* LOAD BANNER PAGE */
 
-const loadBanner = async(req,res)=>{
-    try {
-        res.render("banner")
-    } catch (error) {
-        console.log(error);
-    }
-}
+
 
 module.exports = {
     loadLoginPage,
     loadAdminPage,
     verifyLogin,
-    loadBanner,
+    
+    
 }
