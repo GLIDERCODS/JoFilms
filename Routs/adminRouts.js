@@ -5,6 +5,7 @@ const auth = require('../middleWare/auth')
 const adminController = require('../Controller/adminController')
 const bannerController = require("../Controller/bannerController")
 const portfolioController = require('../Controller/portfolioController')
+const eventController = require('../Controller/eventController')
 const multer = require('../middleWare/multer')
 /* ===== view set up ===== */
 
@@ -21,6 +22,7 @@ adminRout.post('/deleteBanner',auth.isLogin,bannerController.deletBanner)
 adminRout.get('/Portfolio',auth.isLogin,portfolioController.loadPortfolio)
 adminRout.post('/editPortfolio',auth.isLogin,multer.portfolioMulter,portfolioController.editPortfolio)
 
+adminRout.get('/event',auth.isLogin,eventController.loadEvent)
 
 adminRout.get("*",function(req,res){
     res.redirect("/admin")
