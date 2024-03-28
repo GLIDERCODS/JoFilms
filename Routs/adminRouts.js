@@ -6,6 +6,8 @@ const adminController = require('../Controller/adminController')
 const bannerController = require("../Controller/bannerController")
 const portfolioController = require('../Controller/portfolioController')
 const eventController = require('../Controller/eventController')
+const galleryController = require('../Controller/galleryController')
+
 const multer = require('../middleWare/multer')
 /* ===== view set up ===== */
 
@@ -25,6 +27,10 @@ adminRout.post('/editPortfolio',auth.isLogin,multer.portfolioMulter,portfolioCon
 adminRout.get('/event',auth.isLogin,eventController.loadEvent)
 adminRout.post('/addEvent',auth.isLogin,multer.eventMulter,eventController.addEvent)
 adminRout.post('/deleteEvent',auth.isLogin,eventController.deleteEvent)
+
+adminRout.post('/gallery',auth.isLogin,galleryController.loadGallery)
+adminRout.post('/addGallery',auth.isLogin,galleryController.addGallery)
+adminRout.post('/deleteGallery',auth.isLogin,galleryController.deleteGallery)
 
 adminRout.get("*",function(req,res){
     res.redirect("/admin")
