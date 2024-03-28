@@ -29,30 +29,40 @@
 </head>
 
 <body>
+    <style>
+        .swiper-slide img {
+            /* object-fit: fill; */
+            width: 100vw;
+            /* background-position: bottom; */
+            height: 100vh;
+        }
+        .s-img-switch{
+            height: 100vh;
+            object-fit: cover;
+        }
+    </style>
     <div class="preloader-text">
         <div class="text-wrap">J</div>
         <span>loading...</span>
     </div>
     <div class="main-wrapper">
-        <div class="header_top_bg">
+        <div class="header_top_bg  header_trans-fixed menu_light_text">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12">
-                        <header class="right-menu modern">
-                            <a href="" class="mob-nav">
+                        <header class="right-menu classic">
+                            <!-- LOGO -->
+                            <a href="/" class="logo"><span>JoFilms</span></a>
+                            <!-- /LOGO -->
+                            <!-- MOB MENU ICON -->
+                            <a href="javascript:void(0)" class="mob-nav">
                                 <div class="hamburger">
-                                    <span class="line"></span>
-                                    <span class="line"></span>
-                                    <span class="line"></span>
+                                    <i>Menu</i>
                                 </div>
                             </a>
-
-                            <div class="logo-mobile">
-                                <a href="main.html" class="logo">
-                                    <span><img src="/User/images/logos/jofilmBlackLarge.png" alt="JoFilms"></span>
-                                </a>
-                            </div>
-
+                            <!-- /MOB MENU ICON -->
+    
+                            <!-- NAVIGATION -->
                             <nav id="topmenu" class="topmenu">
                                 <a href="javascript:void(0)" class="mob-nav-close">
                                     <span>close</span>
@@ -61,57 +71,52 @@
                                         <span class="line"></span>
                                     </div>
                                 </a>
-                                
-                                <div class="menu-wrapper">
-                                    <ul id="menu-top-left-menu" class="menu">
-                                        <li class="menu-item current-menu-ancestor mega-menu">
-                                            <a href="/">Home</a>
-                                        </li>
-                                        <li class="menu-item mega-menu">
-                                            <a href="/protfolio">PORTFOLIO</a>
-                                        </li>
-                                    </ul>
-                                    <a href="/" class="logo">
-                                        <span><img src="/User/images/logos/jofilmBlackLarge.png" alt="JoFilms"></span>
-                                    </a>
-                                    <ul id="menu-top-right-menu" class="menu">
-                                        <li class="menu-item mega-menu">
-                                            <a href="">ENQUIRE</a>                                        </li>
-                                        <li
-                                            class="menu-item menu-item-type-custom menu-item-object-custom">
-                                            <a href="/loadAbout">ABOUT</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <ul id="menu-menu-1" class="menu">
+                                    <li class="menu-item current-menu-ancestor mega-menu">
+                                        <a href="/">Home</a>
+                                    </li>
+                                    <li class="menu-item mega-menu">
+                                        <a href="/protfolio">PORTFOLIO</a>
+                                    </li>
+                                    <li class="menu-item mega-menu">
+                                        <a href="">ENQUIRE</a>
+                                    </li>
+                                    <li class="menu-item mega-menu">
+                                        <a href="/loadAbout">ABOUT</a>
+                                    </li>
+                                </ul>
                             </nav>
+                            <!-- NAVIGATION -->
                         </header>
                     </div>
                 </div>
             </div>
         </div>
+    
         <div class="container-full">
-            <div class="row margin-lg-10t margin-lg-90b margin-sm-0t margin-sm-70b margin-xs-50b">
-                <div class="col-sm-12">
-                    <div class="banner-slider-wrap andra">
-                        <div class="swiper-container 1" data-mouse="0" data-autoplay="5000" data-loop="1"
-                            data-speed="1500" data-center="1" data-space="0" data-pagination-type="fraction"
-                            data-mode="horizontal">
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <div class="banner-slider-wrap  myro">
+                        <div style="height: 100vh;" class="swiper-container swiper-swiper-unique-id-0 initialized swiper-container-horizontal"
+                             data-mouse="0" data-autoplay="5000" data-loop="1" data-speed="1500" data-center="1"
+                             data-space="0" data-pagination-type="fraction" data-mode="horizontal">
                             <div class="swiper-wrapper">
-                               <% if(bannerData){%>
-                                <% bannerData.forEach((data)=>{%>
-                                    <div class="swiper-slide">
-                                    <img src="/banner/<%= data.image %>" class="s-img-switch" alt="" />
+                                <% if(bannerData){%>
+                                    <% bannerData.forEach((data)=>{%>
+                                <div class="swiper-slide">
+                                    <img src="/banner/<%= data.image %>" style="height: fit-content;" class="s-img-switch" alt="">
+                                    <!-- <div class="content-wrap">
+                                        <div class="subtitle">fashion photography</div>
+                                        <div class="title">impressure</div>
+                                        <a href="vertical-slider.html" class="a-btn-2">view portfolio</a>
+                                    </div> -->
                                 </div>
-                                    
-                                    <%}) %>
+                                <%}) %>
                                 <%} %>
-                                
                             </div>
-                            <div
-                                class="swiper-pagination swiper-pagination-swiper-unique-id-0 swiper-pagination-fraction">
-                                <span class="swiper-pagination-current">01</span> /
-                                <span class="swiper-pagination-total">04</span>
-                            </div>
+                            <div class="swiper-pagination swiper-pagination-swiper-unique-id-0 swiper-pagination-fraction">
+                                <span class="swiper-pagination-current">01</span> / <span
+                                    class="swiper-pagination-total">04</span></div>
                         </div>
                     </div>
                 </div>
