@@ -2,15 +2,13 @@ const mongoose = require('mongoose')
 
 const gallerySchema = mongoose.Schema({
      firstName: {
-          type : String,
-          required: true
+          type : String
      },
      secondName: {
-          type : String,
-          required: true
+          type : String
      },
      event:{
-          ref: 'event',
+          type: String,
           required: true
      },
      image: {

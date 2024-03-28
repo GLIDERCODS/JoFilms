@@ -17,16 +17,20 @@ const addEvent = async (req, res) => {
      try {
           const image = req.file ? req.file.filename : undefined;
           const event = req.body.event
-
-          if (image === undefined) {
-               res.json({ imageIssue: true });
+          const eventExisting = await Event.find({ event: event })
+          if (!eventExisting) {
+               if (image === undefined) {
+                    res.json({ imageIssue: true });
+               } else {
+                    const data = new Event({
+                         event: event,
+                         image: image
+                    });
+                    await data.save();
+                    res.json({ success: true });
+               }
           } else {
-               const data = new Event({
-                    event: event,
-                    image: image
-               });
-               await data.save();
-               res.json({ success: true });
+               res.json({ eventExist: true })
           }
      } catch (error) {
           console.error(error);

@@ -42,4 +42,18 @@ const storage3 = multer.diskStorage({
 const eventUpload = multer({ storage: storage3 });
 const eventMulter = eventUpload.single("image");
 
-module.exports = {bannerMulter,eventMulter,portfolioMulter}
+// -----------------FOR GALLERY----------------
+
+const storage4 = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, path.join(__dirname, "../Public/gallery"));
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
+    }
+});
+
+const galleryUpload = multer({ storage: storage4 });
+const galleryMulter = galleryUpload.single("image");
+
+module.exports = {bannerMulter,eventMulter,portfolioMulter,galleryMulter}
