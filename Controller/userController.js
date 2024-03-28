@@ -1,11 +1,11 @@
-
+const Banner = require('../Model/bannerModel')
 
 /* HOME PAGE */
 
 const homePageLoad = async(req,res)=>{
     try {
-        console.log("in home page");
-        res.render("home")
+        const bannerData = await Banner.find()
+        res.render("home",{bannerData:bannerData})
     } catch (error) {
         console.log(error)
     }

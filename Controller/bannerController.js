@@ -4,7 +4,8 @@ const Banner = require("../Model/bannerModel")
 
 const loadBanner = async(req,res)=>{
     try {
-        res.render("banner")
+      const bannerData = await Banner.find()
+        res.render("banner",{bannerData:bannerData})
     } catch (error) {
         console.log(error);
     }
@@ -33,7 +34,21 @@ const addBanner = async (req, res) => {
     }
   };
 
+  /* DELETE BANNER */
+
+  const deletBanner = async(req,res)=>{
+    try {
+      const bannerId = req.body.bannerId;
+      await Banner.deleteOne({ _id: bannerId });
+      res.json({ success: true });
+    } catch (error) {
+      console.error(error);
+      res.status(500).render("500");
+    }
+  };
+
 module.exports = { 
     loadBanner,
     addBanner, 
+    deletBanner,
 };

@@ -70,10 +70,8 @@
   </style>
 
   <div class="main-content">
-
     <div class="page-content">
       <div class="container-fluid">
-
         <!-- start page title -->
         <div class="row">
           <div class="col-12">
@@ -99,174 +97,132 @@
                                 <i class="glyphicon glyphicon-download-alt"></i>
                                 <p>Choose an image file or drag it here.</p>
                               </div>
-                              <input id="imageInput" type="file" name="image" accept="image/*" class="dropzone">
+                              <input id="imageInput" type="file" name="image" accept="image/*" class="dropzone" />
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-12">
-                          <button type="button" id="addBanner" class="btn btn-primary pull-right">Upload</button>
+                          <button type="button" id="addBanner" class="btn btn-primary pull-right">
+                            Upload
+                          </button>
                         </div>
                       </div>
                     </div>
                   </form>
                 </section>
-
-
               </div>
             </div>
-          </div> <!-- end col -->
-        </div> <!-- end row -->
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end row -->
 
-      </div> <!-- container-fluid -->
+        <div class="row">
+          <% if(bannerData.length>0){%>
+            <%bannerData.forEach((data)=>{%>
+          <div class="col-md-6 col-xl-3">
+                <!-- Simple card -->
+                <div class="card">
+                  <img class="card-img-top img-fluid" src="/banner/<%= data.image%>" alt="Card image cap" />
+                  <div class="card-body">
+                    <a class="btn btn-primary waves-effect waves-light" onclick="deleteBanner('<%= data._id %>')" >Delete</a>
+                  </div>
+                </div>
+              </div>
+              <%})%>
+            <%} %>
+              <!-- end col -->
+    
+            </div>
+        
+      </div>
+      <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
 
     <footer class="footer">
       <div class="container-fluid">
         <div class="row">
-
           <div class="col-sm-6">
             <div class="text-sm-end d-none d-sm-block">
-              Crafted with <i class="mdi mdi-heart text-danger"></i> by <a>BashOps</a>
+              Crafted with <i class="mdi mdi-heart text-danger"></i> by
+              <a>BashOps</a>
             </div>
           </div>
         </div>
       </div>
     </footer>
-
   </div>
   <!-- end main content-->
-
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       // Your JavaScript code here
-      document.getElementById("addBanner").addEventListener("click", async function (e) {
-        e.preventDefault();
+      document
+        .getElementById("addBanner")
+        .addEventListener("click", async function (e) {
+          e.preventDefault();
 
-        const imageInput = document.getElementById("imageInput");
+          const imageInput = document.getElementById("imageInput");
 
-        const image = imageInput.files.length > 0 ? imageInput.files[0] : null;
+          const image = imageInput.files.length > 0 ? imageInput.files[0] : null;
 
-
-
-        if (!image) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Banner image is required.'
-          });
-        } else {
-          try {
-            // Compress image
-            const compressedImage = await compressImage(image);
-
-            const formData = new FormData();
-            formData.append("image", compressedImage);
-
-            // Send compressed image data to the server
-            const response = await axios.post("/admin/addBanner", formData, {
-              headers: {
-                "Content-Type": "multipart/form-data"
-              }
-            });
-
-            if (response.data.imageIssue) {
-              Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Sorry, your image has some issue. Please try again.'
-              });
-            } else if (response.data.success) {
-              const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-              })
-
-              Toast.fire({
-                icon: 'success',
-                title: 'Banner Added.'
-              })
-              setTimeout(() => {
-                window.location.href = "/admin/banner"
-              }, 3000);
-            }
-          } catch (error) {
-            console.error('Error uploading image:', error);
+          if (!image) {
             Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Sorry, there was an error uploading the image. Please try again.'
+              icon: "error",
+              title: "Oops...",
+              text: "Banner image is required.",
             });
-          }
-        }
-      });
-    });
+          } else {
+            try {
+              // Create a FormData object and append the original image file
+              const formData = new FormData();
+              formData.append("image", image);
 
+              // Send the original image data to the server
+              const response = await axios.post("/admin/addBanner", formData, {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                },
+              });
 
-    // Function to compress image using client-side resizing
-    async function compressImage(imageFile) {
-      const maxSize = 1024; // Maximum file size in KB
-      const maxHeight = 800; // Maximum height in pixels
+              if (response.data.imageIssue) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Sorry, your image has some issue. Please try again.",
+                });
+              } else if (response.data.success) {
+                const Toast = Swal.mixin({
+                  toast: true,
+                  position: "top-end",
+                  showConfirmButton: false,
+                  timer: 3000,
+                });
 
-      const canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
-
-      // Load image
-      const image = new Image();
-      const reader = new FileReader();
-
-      reader.readAsDataURL(imageFile);
-
-      return new Promise((resolve, reject) => {
-        reader.onload = function (event) {
-          image.src = event.target.result;
-
-          image.onload = function () {
-            let width = image.width;
-            let height = image.height;
-
-            // Calculate new width and height to maintain aspect ratio
-            if (width > height) {
-              if (width > maxHeight) {
-                height *= maxHeight / width;
-                width = maxHeight;
+                Toast.fire({
+                  icon: "success",
+                  title: "Banner Added.",
+                });
+                setTimeout(() => {
+                  window.location.href = "/admin/banner";
+                }, 3000);
               }
-            } else {
-              if (height > maxHeight) {
-                width *= maxHeight / height;
-                height = maxHeight;
-              }
+            } catch (error) {
+              console.error("Error uploading image:", error);
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Sorry, there was an error uploading the image. Please try again.",
+              });
             }
+          }
+        });
+    });
+</script>
 
-            // Set canvas dimensions
-            canvas.width = width;
-            canvas.height = height;
-
-            // Draw image on canvas
-            context.drawImage(image, 0, 0, width, height);
-
-            // Convert canvas to blob
-            canvas.toBlob((blob) => {
-              resolve(blob);
-            }, 'image/jpeg', 0.8); // JPEG quality: 0.8
-          };
-
-          image.onerror = function (error) {
-            reject(error);
-          };
-        };
-
-        reader.onerror = function (error) {
-          reject(error);
-        };
-      });
-    }
-  </script>
   <script>
     function readFile(input) {
       if (input.files && input.files[0]) {
@@ -274,14 +230,23 @@
 
         reader.onload = function (e) {
           var htmlPreview =
-            '<img width="200" src="' + e.target.result + '" />' +
-            '<p>' + input.files[0].name + '</p>';
+            '<img width="200" src="' +
+            e.target.result +
+            '" />' +
+            "<p>" +
+            input.files[0].name +
+            "</p>";
           var wrapperZone = $(input).parent();
-          var previewZone = $(input).parent().parent().find('.preview-zone');
-          var boxZone = $(input).parent().parent().find('.preview-zone').find('.box').find('.box-body');
+          var previewZone = $(input).parent().parent().find(".preview-zone");
+          var boxZone = $(input)
+            .parent()
+            .parent()
+            .find(".preview-zone")
+            .find(".box")
+            .find(".box-body");
 
-          wrapperZone.removeClass('dragover');
-          previewZone.removeClass('hidden');
+          wrapperZone.removeClass("dragover");
+          previewZone.removeClass("hidden");
           boxZone.empty();
           boxZone.append(htmlPreview);
         };
@@ -291,7 +256,7 @@
     }
 
     function reset(e) {
-      e.wrap('<form>').closest('form').get(0).reset();
+      e.wrap("<form>").closest("form").get(0).reset();
       e.unwrap();
     }
 
@@ -299,27 +264,74 @@
       readFile(this);
     });
 
-    $('.dropzone-wrapper').on('dragover', function (e) {
+    $(".dropzone-wrapper").on("dragover", function (e) {
       e.preventDefault();
       e.stopPropagation();
-      $(this).addClass('dragover');
+      $(this).addClass("dragover");
     });
 
-    $('.dropzone-wrapper').on('dragleave', function (e) {
+    $(".dropzone-wrapper").on("dragleave", function (e) {
       e.preventDefault();
       e.stopPropagation();
-      $(this).removeClass('dragover');
+      $(this).removeClass("dragover");
     });
 
-    $('.remove-preview').on('click', function () {
-      var boxZone = $(this).parents('.preview-zone').find('.box-body');
-      var previewZone = $(this).parents('.preview-zone');
-      var dropzone = $(this).parents('.form-group').find('.dropzone');
+    $(".remove-preview").on("click", function () {
+      var boxZone = $(this).parents(".preview-zone").find(".box-body");
+      var previewZone = $(this).parents(".preview-zone");
+      var dropzone = $(this).parents(".form-group").find(".dropzone");
       boxZone.empty();
-      previewZone.addClass('hidden');
+      previewZone.addClass("hidden");
       reset(dropzone);
     });
-
   </script>
+
+<script>
+  async function deleteBanner(bannerId) {
+    try {
+      const confirmed = await Swal.fire({
+        text: "Are You Sure?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#099680", // Green color for confirm button
+        cancelButtonColor: "#dc3545", // Red color for cancel button
+        confirmButtonText: "Yes",
+        cancelButtonText: "Cancel",
+      });
+
+      if (confirmed.isConfirmed) {
+        const response = await axios.post("/admin/deleteBanner", {
+          bannerId: bannerId,
+        });
+
+        if (response.data.success === true) {
+          const Toast = Swal.mixin({
+                  toast: true,
+                  position: "top-end",
+                  showConfirmButton: false,
+                  timer: 3500,
+                });
+
+                Toast.fire({
+                  icon: "success",
+                  title: "Banner deleted.",
+                });
+                setTimeout(() => {
+                  location.reload();
+                }, 3500);
+        }
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong.",
+      });
+    }
+  }
+</script>
+
+
 
   <%-include("../admin/leyouts/footer.ejs")%>

@@ -39,7 +39,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <header class="right-menu modern">
-                            <a href="javascript:void(0)" class="mob-nav">
+                            <a href="" class="mob-nav">
                                 <div class="hamburger">
                                     <span class="line"></span>
                                     <span class="line"></span>
@@ -97,19 +97,15 @@
                             data-speed="1500" data-center="1" data-space="0" data-pagination-type="fraction"
                             data-mode="horizontal">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="/User/images/vince-fleming-487778.jpg" class="s-img-switch" alt="" />
+                               <% if(bannerData){%>
+                                <% bannerData.forEach((data)=>{%>
+                                    <div class="swiper-slide">
+                                    <img src="/banner/<%= data.image %>" class="s-img-switch" alt="" />
                                 </div>
-                                <div class="swiper-slide">
-                                    <img src="/User/images/scott-webb-228751.jpg" class="s-img-switch" alt="" />
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="/User/images/sweet-ice-cream-photography-408541-e1525354275131.jpg"
-                                        class="s-img-switch" alt="" />
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="/User/images/priscilla-du-preez-306218.jpg" class="s-img-switch" alt="" />
-                                </div>
+                                    
+                                    <%}) %>
+                                <%} %>
+                                
                             </div>
                             <div
                                 class="swiper-pagination swiper-pagination-swiper-unique-id-0 swiper-pagination-fraction">
