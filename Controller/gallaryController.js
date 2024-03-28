@@ -1,10 +1,10 @@
-const Event = require('../Model/eventModel')
+const Gallery = require('../Model/eventModel')
 
 /* LOAD EVENT PAGE */
 
-const loadEvent = async (req, res) => {
+const loadGallery = async (req, res) => {
      try {
-          const eventData = await Event.find()
+          const eventData = await Gallery.find()
           res.render("event", { eventData: eventData })
      } catch (error) {
           console.log(error);
@@ -13,7 +13,7 @@ const loadEvent = async (req, res) => {
 
 /* ADD EVENT */
 
-const addEvent = async (req, res) => {
+const addGallery = async (req, res) => {
      try {
           const image = req.file ? req.file.filename : undefined;
           const event = req.body.event
@@ -21,7 +21,7 @@ const addEvent = async (req, res) => {
           if (image === undefined) {
                res.json({ imageIssue: true });
           } else {
-               const data = new Event({
+               const data = new Gallery({
                     event: event,
                     image: image
                });
@@ -36,10 +36,10 @@ const addEvent = async (req, res) => {
 
 /* DELETE EVENT */
 
-const deleteEvent = async (req, res) => {
+const deleteGallery = async (req, res) => {
      try {
           const eventId = req.body.eventId;
-          await Event.deleteOne({ _id: eventId });
+          await Gallery.deleteOne({ _id: eventId });
           res.json({ success: true });
      } catch (error) {
           console.error(error);
@@ -48,7 +48,7 @@ const deleteEvent = async (req, res) => {
 };
 
 module.exports = {
-     loadEvent,
-     addEvent,
-     deleteEvent,
+     loadGallery,
+     addGallery,
+     deleteGallery,
 };

@@ -23,6 +23,8 @@ adminRout.get('/Portfolio',auth.isLogin,portfolioController.loadPortfolio)
 adminRout.post('/editPortfolio',auth.isLogin,multer.portfolioMulter,portfolioController.editPortfolio)
 
 adminRout.get('/event',auth.isLogin,eventController.loadEvent)
+adminRout.post('/addEvent',auth.isLogin,multer.eventMulter,eventController.addEvent)
+adminRout.post('/deleteEvent',auth.isLogin,eventController.deleteEvent)
 
 adminRout.get("*",function(req,res){
     res.redirect("/admin")
