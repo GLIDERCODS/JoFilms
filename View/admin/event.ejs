@@ -37,42 +37,6 @@
                     <!-- end col -->
                 </div>
                 <!-- end row -->
-                <!-- <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Responsive Table</h4>
-                                <p class="card-title-desc">
-                                    Table displaying images and corresponding event types.
-                                </p>
-
-                                <div class="table-responsive">
-                                    <table class="table mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>No.</th>
-                                                <th>image</th>
-                                                <th>Event type</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Table cell</td>
-                                                <td>Table cell</td>
-                                                <td><button type="button" class="btn btn-outline-danger waves-effect waves-light">Delete</button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- end row -->
-
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -81,17 +45,27 @@
                                 <p class="card-title-desc">Table displaying images and corresponding event types.</p>
 
                                 <!-- Start Media Object -->
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-shrink-0 me-3">
-                                        <img class="rounded avatar-md" src="assets/images/users/avatar-5.jpg" alt="Generic placeholder image">
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <h5>Center-aligned media</h5>
-                                        <p class="mb-0"><button type="button" class="btn btn-outline-danger waves-effect waves-light">Delete</button></p>
-                                    </div>
-                                </div>
-                                <!-- End Media Object -->
-                                <hr>
+                                <% if(eventData){%>
+                                    <% eventData.forEach((data)=>{%>
+                                        <div class="d-flex align-items-center">
+                                            <div class="flex-shrink-0 me-3">
+                                                <img class="rounded avatar-md" src="/event/<%= data.image%>" alt="Generic placeholder image">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h5><%= data.event %></h5>
+                                                <p class="mb-0"><button type="button" onclick="deleteEvent('<%= data._id %>')" class="btn btn-outline-danger waves-effect waves-light">Delete</button></p>
+                                            </div>
+                                        </div>
+                                        <!-- End Media Object -->
+                                        <hr>
+                                        
+                                        <%}) %>
+                                    <%}else{%>
+                                        
+                                        
+                                 <%} %>
+                               
+
                             </div><!-- end card-body -->
                         </div><!-- end card -->
                     </div><!-- end col -->
@@ -141,7 +115,7 @@
                             // Redirect or perform any other action
                             window.location.reload(); // Refresh the page
                         });
-                    }else if(response.eventExist){
+                    }else if(response.data.eventExist){
                         Swal.fire({
                             icon: "error",
                             title: "Oops...",
@@ -165,6 +139,51 @@
             });
         });
     </script>
+    <script>
+        async function deleteEvent(eventId) {
+          try {
+            const confirmed = await Swal.fire({
+              text: "Are You Sure?",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#099680", // Green color for confirm button
+              cancelButtonColor: "#dc3545", // Red color for cancel button
+              confirmButtonText: "Yes",
+              cancelButtonText: "Cancel",
+            });
+      
+            if (confirmed.isConfirmed) {
+              const response = await axios.post("/admin/deleteEvent", {
+                eventId: eventId,
+              });
+      
+              if (response.data.success === true) {
+                const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3500,
+                      });
+      
+                      Toast.fire({
+                        icon: "success",
+                        title: "Event deleted.",
+                      });
+                      setTimeout(() => {
+                        location.reload();
+                      }, 3500);
+              }
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong.",
+            });
+          }
+        }
+      </script>
     
 
 

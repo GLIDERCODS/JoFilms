@@ -15,28 +15,24 @@ const loadEvent = async (req, res) => {
 
 const addEvent = async (req, res) => {
      try {
-          const image = req.file ? req.file.filename : undefined;
-          const event = req.body.event
-          const eventExisting = await Event.find({ event: event })
-          if (!eventExisting) {
-               if (image === undefined) {
-                    res.json({ imageIssue: true });
-               } else {
-                    const data = new Event({
-                         event: event,
-                         image: image
-                    });
-                    await data.save();
-                    res.json({ success: true });
-               }
-          } else {
-               res.json({ eventExist: true })
-          }
+         const image = req.file ? req.file.filename : undefined;
+         const event = req.body.event;
+         const eventExisting = await Event.findOne({ event: { $regex: new RegExp('^' + event + '$', 'i') } });
+         if (eventExisting) {
+             return res.json({ eventExist: true });
+         }
+         const data = new Event({
+             event: event,
+             image: image
+         });
+         await data.save();
+         return res.json({ success: true });
      } catch (error) {
-          console.error(error);
-          res.status(500).render("500");
+         console.error(error);
+     //     return res.status(500).json({ error: true });
      }
-};
+ };
+ 
 
 /* DELETE EVENT */
 
