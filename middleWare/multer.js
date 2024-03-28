@@ -28,4 +28,18 @@ const storage2 = multer.diskStorage({
 const profileUpload = multer({ storage: storage2 });
 const portfolioMulter = profileUpload.single("image");
 
-module.exports = {bannerMulter,portfolioMulter}
+// -----------------FOR EVENTS----------------
+
+const storage3 = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, path.join(__dirname, "../Public/event"));
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
+    }
+});
+
+const eventUpload = multer({ storage: storage3 });
+const eventMulter = eventUpload.single("image");
+
+module.exports = {bannerMulter,eventMulter,portfolioMulter}
