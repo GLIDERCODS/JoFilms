@@ -11,11 +11,11 @@
                             <div class="row">
                                 <!-- left column -->
                                 <div class="col-md-3">
-                                    <div class="text-center">
+                                    <div class="text-center" >
                                         <% if(portfolioData && portfolioData.images){%>
-                                            <img src="/profile/<%= portfolioData.images %>" class="rounded-circle" alt="avatar">
+                                            <img src="/profile/<%= portfolioData.images %>"  class="rounded-circle admin-profile" alt="avatar">
                                             <%}else{%>
-                                            <img src="/profile/150-1503945_transparent-user-png-default-user-image-png-png.png" class="rounded-circle" alt="avatar"> 
+                                            <img src="/profile/150-1503945_transparent-user-png-default-user-image-png-png.png" style="width: 150px;" class="rounded-circle" alt="avatar"> 
                                                 <%} %>
                                         
                                         <h6>Upload a different photo...</h6>
