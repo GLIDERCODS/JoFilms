@@ -1,76 +1,107 @@
 <%-include("../admin/leyouts/header.ejs")%>
 
-<div class="main-content">
-    <div class="page-content">
-      <div class="container-fluid">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Floating labels</h5>
-                        <p class="card-title-desc">Create beautifully simple form labels that float over your input fields.</p>
-        
-                        <form>                                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="floatingFirstnameInput" placeholder="Enter Your First Name">
-                                        <label for="floatingFirstnameInput">First Name</label>
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Event management</h5>
+                                <p class="card-title-desc">Streamline Your Event Planning Efforts with Ease</p>
+
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" name="event" id="floatingFirstnameInput"
+                                                    placeholder="Enter Your First Name">
+                                                <label for="floatingFirstnameInput">Event type</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-control">
+                                                <input type="file" class="form-control" id="imageInput" name="image" accept="image/*"> 
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="floatingLastnameInput" placeholder="Enter Your Last Name">
-                                        <label for="floatingLastnameInput">Last Name</label>
+                                    <div>
+                                        <button type="submit" class="btn btn-primary w-md">Submit</button>
                                     </div>
-                                </div>
+                                </form>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-3">
-                                        <input type="email" class="form-control" id="floatingemailInput" placeholder="Enter Email address">
-                                        <label for="floatingemailInput">Email address</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating mb-3">
-                                        <select class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
-                                            <option selected>Open this select menu</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
-                                        </select>
-                                        <label for="floatingSelectGrid">Works with selects</label>
-                                    </div>
-                                </div>
-                            </div>
-        
-                            <div class="mb-3">
-                                
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="floatingCheck">
-                                    <label class="form-check-label" for="floatingCheck">
-                                      Check me out
-                                    </label>
-                                </div>
-                            </div>
-                            <div>
-                                <button type="submit" class="btn btn-primary w-md">Submit</button>
-                            </div>
-                        </form>
+                            <!-- end card body -->
+                        </div>
+                        <!-- end card -->
                     </div>
-                    <!-- end card body -->
+                    <!-- end col -->
                 </div>
-                <!-- end card -->
+                <!-- end row -->
+
             </div>
-            <!-- end col -->
         </div>
-        <!-- end row -->
-    
     </div>
-        </div>
-        </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("form").addEventListener("submit", async function (e) {
+                e.preventDefault();
+    
+                // Get form data
+                const imageInput = document.getElementById("imageInput");
+                const eventInput = document.getElementById("floatingFirstnameInput");
+    
+                // Validate form fields
+                if (!imageInput.files[0] || !eventInput.value.trim()) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Please fill in all the fields.",
+                    });
+                    return;
+                }
+    
+                // Prepare form data
+                const formData = new FormData();
+                formData.append("image", imageInput.files[0]);
+                formData.append("event", eventInput.value.trim());
+    
+                try {
+                    // Send POST request to server
+                    const response = await axios.post("/admin/addEvent", formData, {
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                    });
+                    // Check response status
+                    if (response.data.success) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: "Event added successfully.",
+                        }).then(() => {
+                            // Redirect or perform any other action
+                            window.location.reload(); // Refresh the page
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Failed to add event.",
+                        });
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Failed to add event. Please try again.",
+                    });
+                }
+            });
+        });
+    </script>
+    
 
 
 
-<%-include("../admin/leyouts/footer.ejs")%>
+    <%-include("../admin/leyouts/footer.ejs")%>
