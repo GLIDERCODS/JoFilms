@@ -1,13 +1,11 @@
 const Portfolio = require('../Model/portfolioModel')
 
-
 /* LOAD PORTFOLIO PAGE */
 
-const loadPortfolio = async(req,res)=>{
+const loadPortfolio = async (req, res) => {
     try {
         const portfolioData = await Portfolio.findOne()
-        console.log(portfolioData);
-        res.render("portfolio",{portfolioData:portfolioData})
+        res.render("portfolio", { portfolioData: portfolioData })
     } catch (error) {
         console.log(error);
     }
@@ -15,29 +13,42 @@ const loadPortfolio = async(req,res)=>{
 
 /* EDIT PROFILE */
 
-const editPortfolio = async(req,res)=>{
+const editPortfolio = async (req, res) => {
     try {
-          // Check if all required fields are provided
-          if (!req.file || !req.body.name || !req.body.about) {
-            return res.status(400).json({ error: "Please provide all required fields." });
+
+        const existingPortfolio = await Portfolio.findOne();
+        const updateObj = {};
+        if (req.file && req.file.filename) {
+            updateObj.images = req.file.filename;
+            if (existingPortfolio && existingPortfolio.images) {
+                fs.unlink(`Public/profile/${existingPortfolio.images}`, (err) => {
+                    if (err) {
+                        console.error("Error deleting previous image:", err);
+                    } else {
+                        console.log("Previous image deleted successfully");
+                    }
+                });
+            }
         }
-    
-        // Save the portfolio details to the database
-        const portfolio = new Portfolio({
-            images: req.file.filename,
-            name: req.body.name,
-            about: req.body.about
-        });
-        await portfolio.save();
-
-        // Return success response
-        return res.status(200).json({ success: true, message: "Portfolio updated successfully." });
+        if (req.body.name) {
+            updateObj.name = req.body.name;
+        }
+        if (req.body.about) {
+            updateObj.about = req.body.about;
+        }
+        const result = await Portfolio.updateOne({}, { $set: updateObj });
+        if (result.modifiedCount > 0) {
+            return res.json({ success: true });
+        } else {
+            return res.json({ success: false });
+        }
     } catch (error) {
-        console.log(error);
+        console.error(error);
+        return res.status(500).json({ success: false, message: "Internal server error." });
     }
-}
+};
 
-module.exports={
+module.exports = {
     loadPortfolio,
     editPortfolio,
 }
