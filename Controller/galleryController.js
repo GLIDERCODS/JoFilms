@@ -73,4 +73,4 @@ module.exports = {
      loadGalleryUser,
      addGallery,
      deleteGallery,
-};
+}

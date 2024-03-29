@@ -5,7 +5,12 @@ const fs = require('fs')
 const loadPortfolio = async (req, res) => {
     try {
         const portfolioData = await Portfolio.findOne()
-        res.render("portfolio", { portfolioData: portfolioData })
+        console.log(portfolioData);
+        if(portfolioData){
+            res.render("portfolio", { portfolioData: portfolioData })
+        }else{
+            res.render("portfolio", { portfolioData: null })
+        }
     } catch (error) {
         console.log(error);
     }
@@ -18,21 +23,19 @@ const editPortfolio = async (req, res) => {
         // console.log(req.file.filename,req.body);
         const existingPortfolio = await Portfolio.findOne();
         const updateObj = {};
-        
-        if(!existingPortfolio){
-            const data = new Portfolio({
-                images: req.file.filename,
-                name:req.body.name,
-                about:req.body.about
-              });
-              await data.save();
-              return res.json({ success: true });
-        }else{
 
+        if (!existingPortfolio) {
+            const data = new Portfolio();
+            data.images = req.body.filename ? req.body.filename : 'default.png'
+            data.name = req.body.name ? req.body.name : 'Not added'
+            data.about = req.body.about ? req.body.about : 'Not added'
+            await data.save();
+            return res.json({ success: true });
+        } else {
             if (req.file && req.file.filename) {
                 updateObj.images = req.file.filename;
-                console.log("looo");
-                if (existingPortfolio && existingPortfolio.images) {
+                if (existingPortfolio && existingPortfolio.images !== 'default.png') {
+
                     fs.unlink(`Public/profile/${existingPortfolio.images}`, (err) => {
                         if (err) {
                             console.error("Error deleting previous image:", err);

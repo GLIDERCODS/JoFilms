@@ -12,7 +12,7 @@
                                 <!-- left column -->
                                 <div class="col-md-3">
                                     <div class="text-center" >
-                                        <% if(portfolioData !== null){%>
+                                        <% if(portfolioData != null){%>
                                             <img src="/profile/<%= portfolioData.images %>"  class="rounded-circle admin-profile" alt="avatar">
                                             <%}else{%>
                                             <img src="/profile/default.png" style="width: 150px;" class="rounded-circle" alt="avatar"> 
@@ -20,7 +20,7 @@
                                         
                                         <h6>Upload a different photo...</h6>
 
-                                        <input type="file" class="form-control" id="imageInput" name="image" accept="image/*">
+                                        <input type="file" class="form-control" id="imageInput"name="image" accept="image/*">
                                     </div>
                                 </div>
 
