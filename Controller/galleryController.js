@@ -5,16 +5,12 @@ const Event = require('../Model/eventModel')
 
 const loadGalleryUser = async (req, res) => {
      try {
-          const event = req.body.event
+          const event = req.query.event
           if (event === undefined) {
                res.json({ eventIssue: true });
           } else {
                const galleryData = await Gallery.find({ event: event })
-               if (galleryData.length > 0) {
-                    res.render("gallery", { galleryData: galleryData })
-               } else {
-                    res.json({ galleryIssue: true, message: "No images found on this event" });
-               }
+               res.render("galleryUserSide", { galleryData: galleryData })
           }
      } catch (error) {
           console.log(error);

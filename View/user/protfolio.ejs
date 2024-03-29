@@ -8,7 +8,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Protfolio- WISO</title>
+    <title>Portfolio- JoFilms</title>
 
     <link rel="stylesheet" href="/User/css/style.min.css" />
     <link href="/User/fonts/fonts.css" rel="stylesheet" />
@@ -92,19 +92,15 @@
             <div class="user-info-wrap">
               <div class="user-img-wrap s-back-switch">
                 <img
-                  src="/User/images/team04-300x300.jpg"
-                  alt="Lula Klein"
+                  src="/profile/<%= PortfolioData.images %>"
+                  alt="<%= PortfolioData.name %>"
                   class="s-img-switch"
                 />
               </div>
               <div class="client-content">
-                <h3 class="title">Lula Klein</h3>
+                <h3 class="title"><%= PortfolioData.name %></h3>
                 <div class="descr">
-                  At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                  blanditiis praesentium voluptatum deleniti atque corrupti quos
-                  dolores et quas molestias excepturi sint occaecati cupiditate
-                  non provident, similique sunt in culpa qui officia deserunt
-                  mollitia animi, id est laborum et dolorum fuga.
+                 <%= PortfolioData.about %>
                 </div>
               </div>
             </div>
@@ -254,7 +250,7 @@
             <div class="item-wrap">
               <div class="wiso-widget-copyright">
                 <div class="img-wrap">
-                  <img src="/User/images/logo_w.png" alt="" />
+                  <img src="/User/images/logos/jofilmWhiteLarge.png" alt="JoFilms" />
                 </div>
                 <div class="socials">
                   <a

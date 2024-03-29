@@ -20,22 +20,24 @@ const loadPortfolio = async (req, res) => {
 
 const editPortfolio = async (req, res) => {
     try {
-        // console.log(req.file.filename,req.body);
         const existingPortfolio = await Portfolio.findOne();
         const updateObj = {};
 
+        // If no existing portfolio found, create a new one
         if (!existingPortfolio) {
-            const data = new Portfolio();
-            data.images = req.body.filename ? req.body.filename : 'default.png'
-            data.name = req.body.name ? req.body.name : 'Not added'
-            data.about = req.body.about ? req.body.about : 'Not added'
-            await data.save();
+            const newPortfolio = new Portfolio({
+                images: req.file.filename ? req.file.filename : 'default.png',
+                name: req.body.name ? req.body.name : 'Not added',
+                about: req.body.about ? req.body.about : 'Not added'
+            });
+            await newPortfolio.save();
             return res.json({ success: true });
         } else {
+            // Update existing portfolio
             if (req.file && req.file.filename) {
                 updateObj.images = req.file.filename;
-                if (existingPortfolio && existingPortfolio.images !== 'default.png') {
-
+                // Delete previous image if not default
+                if (existingPortfolio.images !== 'default.png') {
                     fs.unlink(`Public/profile/${existingPortfolio.images}`, (err) => {
                         if (err) {
                             console.error("Error deleting previous image:", err);
@@ -47,16 +49,12 @@ const editPortfolio = async (req, res) => {
             }
             if (req.body.name) {
                 updateObj.name = req.body.name;
-                console.log("dddd");
             }
             if (req.body.about) {
-                console.log("llll");
                 updateObj.about = req.body.about;
             }
             const result = await Portfolio.updateOne({}, { $set: updateObj });
-            console.log(result);
             if (result.modifiedCount > 0) {
-                console.log(result);
                 return res.json({ success: true });
             } else {
                 return res.json({ success: false });
@@ -67,6 +65,7 @@ const editPortfolio = async (req, res) => {
         return res.status(500).json({ success: false, message: "Internal server error." });
     }
 };
+
 
 module.exports = {
     loadPortfolio,

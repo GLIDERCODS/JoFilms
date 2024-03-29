@@ -16,7 +16,8 @@ const loadEvent = async (req, res) => {
 const addEvent = async (req, res) => {
      try {
          const image = req.file ? req.file.filename : undefined;
-         const event = req.body.event;
+         const event = req.body.event.toUpperCase()
+
          const eventExisting = await Event.findOne({ event: { $regex: new RegExp('^' + event + '$', 'i') } });
          if (eventExisting) {
              return res.json({ eventExist: true });

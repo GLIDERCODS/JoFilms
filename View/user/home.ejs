@@ -183,12 +183,13 @@
                                 data-animation='{"name":"Fade in","visible":"","hidden":""}' data-transition="700ms"
                                 data-ajaxmethod="load_more" data-ajaxdelay="100" data-preloader="" data-itemdelay="100"
                                 data-gallery="" data-ajax="">
+                               <% events.forEach((data)=>{%>
                                 <article class="tg-item tg-post-3106 tg-iso-1 f45" data-row="1" data-col="1">
                                     <div class="tg-item-inner">
                                         <div class="tg-item-media-holder tg-light">
                                             <div class="tg-item-media-inner">
                                                 <div class="tg-item-image">
-                                                    <img src="/User/images/sweet-ice-cream-photography-113287.jpg"
+                                                    <img src="/event/<%= data.image %>"
                                                         class="s-img-switch" alt="" />
                                                 </div>
                                             </div>
@@ -196,76 +197,15 @@
                                                 <div class="tg-item-overlay"></div>
                                                 <div class="tg-bottom-holder">
                                                     <h3 class="tg-item-title tg-element-1 title">
-                                                        <a target="_self" href="#">Outdoor</a>
+                                                        <a target="_self" href="/UserSideGallery?event=<%= data.event %>"><%= data.event %></a>
                                                     </h3>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </article>
-                                <article class="tg-item tg-post-3108 tg-iso-1 f22 f45" data-row="1" data-col="1">
-                                    <div class="tg-item-inner">
-                                        <div class="tg-item-inner">
-                                            <div class="tg-item-media-holder tg-light">
-                                                <div class="tg-item-media-inner">
-                                                    <div class="tg-item-image">
-                                                        <img src="/User/images/bridget-flohe-339785.jpg"
-                                                            class="s-img-switch" alt="" />
-                                                    </div>
-                                                </div>
-                                                <div class="tg-item-media-content">
-                                                    <div class="tg-item-overlay"></div>
-                                                    <div class="tg-bottom-holder">
-                                                        <h3 class="tg-item-title tg-element-1 title">
-                                                            <a target="_self" href="#">Indoor</a>
-                                                        </h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                                <article class="tg-item tg-post-3110 tg-iso-1 f22 f45" data-row="2" data-col="1">
-                                    <div class="tg-item-inner">
-                                        <div class="tg-item-media-holder tg-light">
-                                            <div class="tg-item-media-inner">
-                                                <div class="tg-item-image">
-                                                    <img src="/User/images/cameron-stow-243141.jpg" class="s-img-switch"
-                                                        alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="tg-item-media-content">
-                                                <div class="tg-item-overlay"></div>
-                                                <div class="tg-bottom-holder">
-                                                    <h3 class="tg-item-title tg-element-1 title">
-                                                        <a target="_self" href="#">Destination</a>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
-                                <article class="tg-item tg-post-3112 tg-iso-1 f58 f54 f57 f53 f55" data-row="1"
-                                    data-col="2">
-                                    <div class="tg-item-inner">
-                                        <div class="tg-item-media-holder tg-light">
-                                            <div class="tg-item-media-inner">
-                                                <div class="tg-item-image">
-                                                    <img src="/User/images/natalie-toombs-450098.jpg"
-                                                        class="s-img-switch" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="tg-item-media-content">
-                                                <div class="tg-item-overlay"></div>
-                                                <div class="tg-bottom-holder">
-                                                    <h3 class="tg-item-title tg-element-1 title">
-                                                        <a target="_self" href="travel-wedding.html">Travel wedding</a>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </article>
+                                
+                                <%}) %>
                             </div>
                         </div>
                     </div>
@@ -310,12 +250,13 @@
                             data-animation='{"name":"Fade in","visible":"","hidden":""}' data-transition="700ms"
                             data-ajaxmethod="load_more" data-ajaxdelay="100" data-preloader="" data-itemdelay="100"
                             data-gallery="" data-ajax="">
-                            <article class="tg-item tg-post-3155 tg-iso-2 f21 f43" data-row="1" data-col="1">
+                            <% if(gallery[0]){%>
+                                 <article class="tg-item tg-post-3155 tg-iso-2 f21 f43" data-row="1" data-col="1">
                                 <div class="tg-item-inner">
                                     <div class="tg-item-media-holder tg-light">
                                         <div class="tg-item-media-inner">
                                             <img class="tg-item-image" alt=""
-                                                src="/User/images/petr-ovralov-239614.jpg" />
+                                                src="/gallery/<%= gallery[0].image %>" />
                                         </div>
                                         <div class="tg-item-media-content">
                                             <div class="tg-item-overlay"></div>
@@ -323,8 +264,8 @@
                                                 <div class="tg-center-inner">
                                                     <a id="tolb-31583155"
                                                         class="tg-media-button tg-element-3 gallery-btn"
-                                                        data-tolb-src="/User/images/petr-ovralov-239614.jpg"
-                                                        data-tolb-type="image" data-tolb-alt="Petr-ovralov-239614"><i
+                                                        data-tolb-src="/gallery/<%= gallery[0].image %>"
+                                                        data-tolb-type="image" data-tolb-alt="<%= gallery[0].image %>"><i
                                                             class="tg-icon-add-2"></i></a>
                                                 </div>
                                             </div>
@@ -333,22 +274,24 @@
                                     <div class="tg-item-content-holder tg-dark image-format" data-position="bottom">
                                         <span class="tg-cats-holder tg-element-1">
                                             <a class="portfolio-category" href="#" rel="category" data-term-id="21">
-                                                <span class="tg-item-term">destination</span>
+                                                <span class="tg-item-term"><%= gallery[0].event %></span>
                                             </a>
                                         </span>
                                         <h3 class="tg-item-title tg-element-2 title">
-                                            <a target="_self" href="#">Fluena &amp; Richard | Destination Wedding</a>
+                                            <a target="_self" href="#"><%= gallery[0].firstName %> &amp; <%= gallery[0].secondName %></a>
                                         </h3>
                                         <div class="tg-item-clear"></div>
                                     </div>
                                 </div>
                             </article>
-                            <article class="tg-item tg-post-3153 tg-iso-2 f20 f43" data-row="1" data-col="1">
+                                <%} %>
+                            <% if(gallery[1]){%>
+                                <article class="tg-item tg-post-3153 tg-iso-2 f20 f43" data-row="1" data-col="1">
                                 <div class="tg-item-inner">
                                     <div class="tg-item-media-holder tg-light">
                                         <div class="tg-item-media-inner">
                                             <img class="tg-item-image" alt=""
-                                                src="/User/images/josh-applegate-211348.jpg" />
+                                                src="/gallery/<%= gallery[1].image %>" />
                                         </div>
                                         <div class="tg-item-media-content">
                                             <div class="tg-item-overlay"></div>
@@ -356,8 +299,8 @@
                                                 <div class="tg-center-inner">
                                                     <a id="tolb-31583153"
                                                         class="tg-media-button tg-element-3 gallery-btn"
-                                                        data-tolb-src="/User/images/josh-applegate-211348.jpg"
-                                                        data-tolb-type="image" data-tolb-alt="Josh-applegate-211348"><i
+                                                        data-tolb-src="/gallery/<%= gallery[1].image %>"
+                                                        data-tolb-type="image" data-tolb-alt="<%= gallery[1].image %>"><i
                                                             class="tg-icon-add-2"></i></a>
                                                 </div>
                                             </div>
@@ -366,22 +309,24 @@
                                     <div class="tg-item-content-holder tg-dark image-format" data-position="bottom">
                                         <span class="tg-cats-holder tg-element-1">
                                             <a class="portfolio-category" href="#" rel="category" data-term-id="20">
-                                                <span class="tg-item-term">outdoor</span>
+                                                <span class="tg-item-term"><%= gallery[1].event %></span>
                                             </a>
                                         </span>
                                         <h3 class="tg-item-title tg-element-2 title">
-                                            <a target="_self" href="#">Anna &amp; Mike | Boho Garden Wedding</a>
+                                            <a target="_self" href="#"><%= gallery[1].firstName %> &amp; <%= gallery[1].secondName %></a>
                                         </h3>
                                         <div class="tg-item-clear"></div>
                                     </div>
                                 </div>
                             </article>
-                            <article class="tg-item tg-post-3151 tg-iso-2 f22 f43" data-row="1" data-col="1">
+                                <%} %>
+                            <% if(gallery[2]){%>
+                                <article class="tg-item tg-post-3151 tg-iso-2 f22 f43" data-row="1" data-col="1">
                                 <div class="tg-item-inner">
                                     <div class="tg-item-media-holder tg-light">
                                         <div class="tg-item-media-inner">
                                             <img class="tg-item-image" alt=""
-                                                src="/User/images/alexandra-gorn-340203-e1525348945234.jpg" />
+                                                src="/gallery/<%= gallery[2].image %>" />
                                         </div>
                                         <div class="tg-item-media-content">
                                             <div class="tg-item-overlay"></div>
@@ -389,8 +334,8 @@
                                                 <div class="tg-center-inner">
                                                     <a id="tolb-31583151"
                                                         class="tg-media-button tg-element-3 gallery-btn"
-                                                        data-tolb-src="/User/images/alexandra-gorn-340203-e1525348945234.jpg"
-                                                        data-tolb-type="image" data-tolb-alt="Alexandra-gorn-340203"><i
+                                                        data-tolb-src="/gallery/<%= gallery[2].image %>"
+                                                        data-tolb-type="image" data-tolb-alt="<%= gallery[2].image %>"><i
                                                             class="tg-icon-add-2"></i></a>
                                                 </div>
                                             </div>
@@ -399,23 +344,24 @@
                                     <div class="tg-item-content-holder tg-dark image-format" data-position="bottom">
                                         <span class="tg-cats-holder tg-element-1">
                                             <a class="portfolio-category" href="#" rel="category" data-term-id="22">
-                                                <span class="tg-item-term">destination</span>
+                                                <span class="tg-item-term"><%= gallery[2].event %></span>
                                             </a>
                                         </span>
                                         <h3 class="tg-item-title tg-element-2 title">
-                                            <a target="_self" href="my-2017-wedding-favourites.html">My 2017 wedding
-                                                favourites</a>
+                                            <a target="_self" href="my-2017-wedding-favourites.html"><%= gallery[2].firstName %></a>
                                         </h3>
                                         <div class="tg-item-clear"></div>
                                     </div>
                                 </div>
                             </article>
-                            <article class="tg-item tg-post-3149 tg-iso-2 f20 f43" data-row="1" data-col="1">
+                                <%} %>
+                             <% if(gallery[3]){%>
+                                  <article class="tg-item tg-post-3149 tg-iso-2 f20 f43" data-row="1" data-col="1">
                                 <div class="tg-item-inner">
                                     <div class="tg-item-media-holder tg-light">
                                         <div class="tg-item-media-inner">
                                             <img class="tg-item-image" alt=""
-                                                src="/User/images/brooke-cagle-193347-e1525349223706.jpg" />
+                                                src="/gallery/<%= gallery[3].image %>" />
                                         </div>
                                         <div class="tg-item-media-content">
                                             <div class="tg-item-overlay"></div>
@@ -423,8 +369,8 @@
                                                 <div class="tg-center-inner">
                                                     <a id="tolb-31583145"
                                                         class="tg-media-button tg-element-3 gallery-btn"
-                                                        data-tolb-src="/User/images/brooke-cagle-193347-e1525349223706.jpg"
-                                                        data-tolb-type="image" data-tolb-alt="Brooke-cagle-193347"><i
+                                                        data-tolb-src="/gallery/<%= gallery[3].image %>"
+                                                        data-tolb-type="image" data-tolb-alt="<%= gallery[3].image %>"><i
                                                             class="tg-icon-add-2"></i></a>
                                                 </div>
                                             </div>
@@ -433,22 +379,24 @@
                                     <div class="tg-item-content-holder tg-dark image-format" data-position="bottom">
                                         <span class="tg-cats-holder tg-element-1">
                                             <a class="portfolio-category" href="#" rel="category" data-term-id="20">
-                                                <span class="tg-item-term">outdoor</span>
+                                                <span class="tg-item-term"><%= gallery[3].event %></span>
                                             </a>
                                         </span>
                                         <h3 class="tg-item-title tg-element-2 title">
-                                            <a target="_self" href="#">Anna &amp; Mike | Boho Garden Wedding</a>
+                                            <a target="_self" href="#"><%= gallery[3].firstName %> &amp; <%= gallery[3].secondName %></a>
                                         </h3>
                                         <div class="tg-item-clear"></div>
                                     </div>
                                 </div>
                             </article>
-                            <article class="tg-item tg-post-3145 tg-iso-2 f20" data-row="1" data-col="1">
+                                 <%} %>
+                            <% if(gallery[4]){%>
+                                <article class="tg-item tg-post-3145 tg-iso-2 f20" data-row="1" data-col="1">
                                 <div class="tg-item-inner">
                                     <div class="tg-item-media-holder tg-light">
                                         <div class="tg-item-media-inner">
                                             <img class="tg-item-image" alt=""
-                                                src="/User/images/evelina-friman-339606-e1525350068510.jpg" />
+                                                src="/gallery/<%= gallery[4].image %>" />
                                         </div>
                                         <div class="tg-item-media-content">
                                             <div class="tg-item-overlay"></div>
@@ -456,8 +404,8 @@
                                                 <div class="tg-center-inner">
                                                     <a id="tolb-31583149"
                                                         class="tg-media-button tg-element-3 gallery-btn"
-                                                        data-tolb-src="/User/images/evelina-friman-339606-e1525350068510.jpg"
-                                                        data-tolb-type="image" data-tolb-alt="Evelina-friman-339606"><i
+                                                        data-tolb-src="/gallery/<%= gallery[4].image %>"
+                                                        data-tolb-type="image" data-tolb-alt="<%= gallery[4].image %>"><i
                                                             class="tg-icon-add-2"></i></a>
                                                 </div>
                                             </div>
@@ -466,22 +414,24 @@
                                     <div class="tg-item-content-holder tg-dark image-format" data-position="bottom">
                                         <span class="tg-cats-holder tg-element-1">
                                             <a class="portfolio-category" href="#" rel="category" data-term-id="20">
-                                                <span class="tg-item-term">outdoor</span>
+                                                <span class="tg-item-term"><%= gallery[4].event %></span>
                                             </a>
                                         </span>
                                         <h3 class="tg-item-title tg-element-2 title">
-                                            <a target="_self" href="#">Anna &amp; Mike | Boho Garden Wedding</a>
+                                            <a target="_self" href="#"><%= gallery[4].firstName %> &amp; <%= gallery[4].secondName %></a>
                                         </h3>
                                         <div class="tg-item-clear"></div>
                                     </div>
                                 </div>
                             </article>
-                            <article class="tg-item tg-post-3147 tg-iso-2 f21 f43" data-row="1" data-col="1">
+                                <%} %>
+                            <% if(gallery[5]){%>
+                                 <article class="tg-item tg-post-3147 tg-iso-2 f21 f43" data-row="1" data-col="1">
                                 <div class="tg-item-inner">
                                     <div class="tg-item-media-holder tg-light">
                                         <div class="tg-item-media-inner">
                                             <img class="tg-item-image" alt=""
-                                                src="/User/images/sweet-ice-cream-photography-91777.jpg" />
+                                                src="/gallery/<%= gallery[5].image %>" />
                                         </div>
                                         <div class="tg-item-media-content">
                                             <div class="tg-item-overlay"></div>
@@ -489,9 +439,9 @@
                                                 <div class="tg-center-inner">
                                                     <a id="tolb-31583147"
                                                         class="tg-media-button tg-element-3 gallery-btn"
-                                                        data-tolb-src="/User/images/sweet-ice-cream-photography-91777.jpg"
+                                                        data-tolb-src="/gallery/<%= gallery[5].image %>"
                                                         data-tolb-type="image"
-                                                        data-tolb-alt="Sweet-ice-cream-photography-91777"><i
+                                                        data-tolb-alt="<%= gallery[5].image %>"><i
                                                             class="tg-icon-add-2"></i></a>
                                                 </div>
                                             </div>
@@ -500,17 +450,17 @@
                                     <div class="tg-item-content-holder tg-dark image-format" data-position="bottom">
                                         <span class="tg-cats-holder tg-element-1">
                                             <a class="portfolio-category" href="#" rel="category" data-term-id="21">
-                                                <span class="tg-item-term">destination</span>
+                                                <span class="tg-item-term"><%= gallery[5].event %></span>
                                             </a>
                                         </span>
                                         <h3 class="tg-item-title tg-element-2 title">
-                                            <a target="_self" href="samantha-michelle-beach-wedding.html">Samantha &amp;
-                                                Michelle | Beach Wedding</a>
+                                            <a target="_self" href="samantha-michelle-beach-wedding.html"><%= gallery[5].firstName %> &amp;<%= gallery[5].secondName %></a>
                                         </h3>
                                         <div class="tg-item-clear"></div>
                                     </div>
                                 </div>
                             </article>
+                                <%} %>
                         </div>
                     </div>
                 </div>
