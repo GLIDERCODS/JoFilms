@@ -1,6 +1,5 @@
 const Portfolio = require('../Model/portfolioModel')
 const fs = require('fs')
-
 /* LOAD PORTFOLIO PAGE */
 
 const loadPortfolio = async (req, res) => {
@@ -36,6 +35,7 @@ const editPortfolio = async (req, res) => {
             if (req.file && req.file.filename) {
                 updateObj.images = req.file.filename;
                 if (existingPortfolio && existingPortfolio.images !== 'default.png') {
+
                     fs.unlink(`Public/profile/${existingPortfolio.images}`, (err) => {
                         if (err) {
                             console.error("Error deleting previous image:", err);

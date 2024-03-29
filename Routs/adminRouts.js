@@ -29,7 +29,7 @@ adminRout.post('/addEvent',auth.isLogin,multer.eventMulter,eventController.addEv
 adminRout.post('/deleteEvent',auth.isLogin,eventController.deleteEvent)
 
 adminRout.get('/gallery',auth.isLogin,galleryController.loadGallery)
-adminRout.post('/addGallery',auth.isLogin,galleryController.addGallery)
+adminRout.post('/addGallery',auth.isLogin,multer.galleryMulter,galleryController.addGallery)
 adminRout.post('/deleteGallery',auth.isLogin,galleryController.deleteGallery)
 
 adminRout.get("*",function(req,res){
