@@ -36,7 +36,8 @@
             /* background-position: bottom; */
             height: 100vh;
         }
-        .s-img-switch{
+
+        .s-img-switch {
             height: 100vh;
             object-fit: cover;
         }
@@ -61,7 +62,7 @@
                                 </div>
                             </a>
                             <!-- /MOB MENU ICON -->
-    
+
                             <!-- NAVIGATION -->
                             <nav id="topmenu" class="topmenu">
                                 <a href="javascript:void(0)" class="mob-nav-close">
@@ -92,31 +93,35 @@
                 </div>
             </div>
         </div>
-    
+
         <div class="container-full">
             <div class="row">
                 <div class="col-sm-12 ">
                     <div class="banner-slider-wrap  myro">
-                        <div style="height: 100vh;" class="swiper-container swiper-swiper-unique-id-0 initialized swiper-container-horizontal"
-                             data-mouse="0" data-autoplay="5000" data-loop="1" data-speed="1500" data-center="1"
-                             data-space="0" data-pagination-type="fraction" data-mode="horizontal">
+                        <div style="height: 100vh;"
+                            class="swiper-container swiper-swiper-unique-id-0 initialized swiper-container-horizontal"
+                            data-mouse="0" data-autoplay="5000" data-loop="1" data-speed="1500" data-center="1"
+                            data-space="0" data-pagination-type="fraction" data-mode="horizontal">
                             <div class="swiper-wrapper">
                                 <% if(bannerData){%>
                                     <% bannerData.forEach((data)=>{%>
-                                <div class="swiper-slide">
-                                    <img src="/banner/<%= data.image %>" style="height: fit-content;" class="s-img-switch" alt="">
-                                    <!-- <div class="content-wrap">
+                                        <div class="swiper-slide">
+                                            <img src="/banner/<%= data.image %>" style="height: fit-content;"
+                                                class="s-img-switch" alt="">
+                                            <!-- <div class="content-wrap">
                                         <div class="subtitle">fashion photography</div>
                                         <div class="title">impressure</div>
                                         <a href="vertical-slider.html" class="a-btn-2">view portfolio</a>
                                     </div> -->
-                                </div>
-                                <%}) %>
-                                <%} %>
+                                        </div>
+                                        <%}) %>
+                                            <%} %>
                             </div>
-                            <div class="swiper-pagination swiper-pagination-swiper-unique-id-0 swiper-pagination-fraction">
+                            <div
+                                class="swiper-pagination swiper-pagination-swiper-unique-id-0 swiper-pagination-fraction">
                                 <span class="swiper-pagination-current">01</span> / <span
-                                    class="swiper-pagination-total">04</span></div>
+                                    class="swiper-pagination-total">04</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -183,29 +188,32 @@
                                 data-animation='{"name":"Fade in","visible":"","hidden":""}' data-transition="700ms"
                                 data-ajaxmethod="load_more" data-ajaxdelay="100" data-preloader="" data-itemdelay="100"
                                 data-gallery="" data-ajax="">
-                               <% events.forEach((data)=>{%>
-                                <article class="tg-item tg-post-3106 tg-iso-1 f45" data-row="1" data-col="1">
-                                    <div class="tg-item-inner">
-                                        <div class="tg-item-media-holder tg-light">
-                                            <div class="tg-item-media-inner">
-                                                <div class="tg-item-image">
-                                                    <img src="/event/<%= data.image %>"
-                                                        class="s-img-switch" alt="" />
+                                <% events.forEach((data)=>{%>
+                                    <article class="tg-item tg-post-3106 tg-iso-1 f45" data-row="1" data-col="1">
+                                        <div class="tg-item-inner">
+                                            <div class="tg-item-media-holder tg-light">
+                                                <div class="tg-item-media-inner">
+                                                    <div class="tg-item-image">
+                                                        <img src="/event/<%= data.image %>" class="s-img-switch"
+                                                            alt="" />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="tg-item-media-content">
-                                                <div class="tg-item-overlay"></div>
-                                                <div class="tg-bottom-holder">
-                                                    <h3 class="tg-item-title tg-element-1 title">
-                                                        <a target="_self" href="/UserSideGallery?event=<%= data.event %>"><%= data.event %></a>
-                                                    </h3>
+                                                <div class="tg-item-media-content">
+                                                    <div class="tg-item-overlay"></div>
+                                                    <div class="tg-bottom-holder">
+                                                        <h3 class="tg-item-title tg-element-1 title">
+                                                            <a target="_self"
+                                                                href="/UserSideGallery?event=<%= data.event %>">
+                                                                <%= data.event %>
+                                                            </a>
+                                                        </h3>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </article>
-                                
-                                <%}) %>
+                                    </article>
+
+                                    <%}) %>
                             </div>
                         </div>
                     </div>
@@ -250,13 +258,12 @@
                             data-animation='{"name":"Fade in","visible":"","hidden":""}' data-transition="700ms"
                             data-ajaxmethod="load_more" data-ajaxdelay="100" data-preloader="" data-itemdelay="100"
                             data-gallery="" data-ajax="">
-                            
-                                 <article class="tg-item tg-post-3155 tg-iso-2 f21 f43" data-row="1" data-col="1">
+
+                            <article class="tg-item tg-post-3155 tg-iso-2 f21 f43" data-row="1" data-col="1">
                                 <div class="tg-item-inner">
                                     <div class="tg-item-media-holder tg-light">
                                         <div class="tg-item-media-inner">
-                                            <img class="tg-item-image" alt=""
-                                                src="/gallery/<%= gallery[0].image %>" />
+                                            <img class="tg-item-image" alt="" src="/gallery/<%= gallery[0].images[0].image %>" />
                                         </div>
                                         <div class="tg-item-media-content">
                                             <div class="tg-item-overlay"></div>
@@ -264,8 +271,9 @@
                                                 <div class="tg-center-inner">
                                                     <a id="tolb-31583155"
                                                         class="tg-media-button tg-element-3 gallery-btn"
-                                                        data-tolb-src="/gallery/<%= gallery[0].image %>"
-                                                        data-tolb-type="image" data-tolb-alt="<%= gallery[0].image %>"><i
+                                                        data-tolb-src="/gallery/<%= gallery[0].images[0].image %>"
+                                                        data-tolb-type="image"
+                                                        data-tolb-alt="<%= gallery[0].images[0].image %>"><i
                                                             class="tg-icon-add-2"></i></a>
                                                 </div>
                                             </div>
@@ -274,23 +282,26 @@
                                     <div class="tg-item-content-holder tg-dark image-format" data-position="bottom">
                                         <span class="tg-cats-holder tg-element-1">
                                             <a class="portfolio-category" href="#" rel="category" data-term-id="21">
-                                                <span class="tg-item-term"><%= gallery[0].event %></span>
+                                                <span class="tg-item-term">
+                                                     <%= gallery[0].images[0].event %> 
+                                                </span>
                                             </a>
                                         </span>
                                         <h3 class="tg-item-title tg-element-2 title">
-                                            <a target="_self" href="#"><%= gallery[0].firstName %> &amp; <%= gallery[0].secondName %></a>
+                                            <a target="_self" href="#">
+                                                <%= gallery[0].images[0].firstName %> &amp; <%= gallery[0].images[0].secondName %>
+                                            </a>
                                         </h3>
                                         <div class="tg-item-clear"></div>
                                     </div>
                                 </div>
                             </article>
-                             
-                                <article class="tg-item tg-post-3153 tg-iso-2 f20 f43" data-row="1" data-col="1">
+
+                            <article class="tg-item tg-post-3153 tg-iso-2 f20 f43" data-row="1" data-col="1">
                                 <div class="tg-item-inner">
                                     <div class="tg-item-media-holder tg-light">
                                         <div class="tg-item-media-inner">
-                                            <img class="tg-item-image" alt=""
-                                                src="/gallery/<%= gallery[1].image %>" />
+                                            <img class="tg-item-image" alt="" src="/gallery/<%= gallery[1].images[0].image %>" />
                                         </div>
                                         <div class="tg-item-media-content">
                                             <div class="tg-item-overlay"></div>
@@ -298,8 +309,9 @@
                                                 <div class="tg-center-inner">
                                                     <a id="tolb-31583153"
                                                         class="tg-media-button tg-element-3 gallery-btn"
-                                                        data-tolb-src="/gallery/<%= gallery[1].image %>"
-                                                        data-tolb-type="image" data-tolb-alt="<%= gallery[1].image %>"><i
+                                                        data-tolb-src="/gallery/<%= gallery[1].images[0].image %>"
+                                                        data-tolb-type="image"
+                                                        data-tolb-alt="<%= gallery[1].images[0].image %>"><i
                                                             class="tg-icon-add-2"></i></a>
                                                 </div>
                                             </div>
@@ -308,23 +320,26 @@
                                     <div class="tg-item-content-holder tg-dark image-format" data-position="bottom">
                                         <span class="tg-cats-holder tg-element-1">
                                             <a class="portfolio-category" href="#" rel="category" data-term-id="20">
-                                                <span class="tg-item-term"><%= gallery[1].event %></span>
+                                                <span class="tg-item-term">
+                                                    <%= gallery[1].images[0].event %>
+                                                </span>
                                             </a>
                                         </span>
                                         <h3 class="tg-item-title tg-element-2 title">
-                                            <a target="_self" href="#"><%= gallery[1].firstName %> &amp; <%= gallery[1].secondName %></a>
+                                            <a target="_self" href="#">
+                                                <%= gallery[1].images[0].firstName %> &amp; <%= gallery[1].images[0].secondName %>
+                                            </a>
                                         </h3>
                                         <div class="tg-item-clear"></div>
                                     </div>
                                 </div>
                             </article>
-                           
-                                <article class="tg-item tg-post-3151 tg-iso-2 f22 f43" data-row="1" data-col="1">
+
+                            <article class="tg-item tg-post-3151 tg-iso-2 f22 f43" data-row="1" data-col="1">
                                 <div class="tg-item-inner">
                                     <div class="tg-item-media-holder tg-light">
                                         <div class="tg-item-media-inner">
-                                            <img class="tg-item-image" alt=""
-                                                src="/gallery/<%= gallery[2].image %>" />
+                                            <img class="tg-item-image" alt="" src="/gallery/<%= gallery[2].images[0].image %>" />
                                         </div>
                                         <div class="tg-item-media-content">
                                             <div class="tg-item-overlay"></div>
@@ -332,8 +347,9 @@
                                                 <div class="tg-center-inner">
                                                     <a id="tolb-31583151"
                                                         class="tg-media-button tg-element-3 gallery-btn"
-                                                        data-tolb-src="/gallery/<%= gallery[2].image %>"
-                                                        data-tolb-type="image" data-tolb-alt="<%= gallery[2].image %>"><i
+                                                        data-tolb-src="/gallery/<%= gallery[2].images[0].image %>"
+                                                        data-tolb-type="image"
+                                                        data-tolb-alt="<%= gallery[2].images[0].image %>"><i
                                                             class="tg-icon-add-2"></i></a>
                                                 </div>
                                             </div>
@@ -342,23 +358,26 @@
                                     <div class="tg-item-content-holder tg-dark image-format" data-position="bottom">
                                         <span class="tg-cats-holder tg-element-1">
                                             <a class="portfolio-category" href="#" rel="category" data-term-id="22">
-                                                <span class="tg-item-term"><%= gallery[2].event %></span>
+                                                <span class="tg-item-term">
+                                                    <%= gallery[2].images[0].event %>
+                                                </span>
                                             </a>
                                         </span>
                                         <h3 class="tg-item-title tg-element-2 title">
-                                            <a target="_self" href="my-2017-wedding-favourites.html"><%= gallery[2].firstName %></a>
+                                            <a target="_self" href="my-2017-wedding-favourites.html">
+                                                <%= gallery[2].images[0].firstName %> &amp; <%= gallery[2].images[0].secondName %>
+                                            </a>
                                         </h3>
                                         <div class="tg-item-clear"></div>
                                     </div>
                                 </div>
                             </article>
-                         
-                                  <article class="tg-item tg-post-3149 tg-iso-2 f20 f43" data-row="1" data-col="1">
+
+                            <article class="tg-item tg-post-3149 tg-iso-2 f20 f43" data-row="1" data-col="1">
                                 <div class="tg-item-inner">
                                     <div class="tg-item-media-holder tg-light">
                                         <div class="tg-item-media-inner">
-                                            <img class="tg-item-image" alt=""
-                                                src="/gallery/<%= gallery[3].image %>" />
+                                            <img class="tg-item-image" alt="" src="/gallery/<%= gallery[0].images[1].image %>" />
                                         </div>
                                         <div class="tg-item-media-content">
                                             <div class="tg-item-overlay"></div>
@@ -366,8 +385,9 @@
                                                 <div class="tg-center-inner">
                                                     <a id="tolb-31583145"
                                                         class="tg-media-button tg-element-3 gallery-btn"
-                                                        data-tolb-src="/gallery/<%= gallery[3].image %>"
-                                                        data-tolb-type="image" data-tolb-alt="<%= gallery[3].image %>"><i
+                                                        data-tolb-src="/gallery/<%= gallery[0].images[1].image %>"
+                                                        data-tolb-type="image"
+                                                        data-tolb-alt="<%= gallery[0].images[1].image %>"><i
                                                             class="tg-icon-add-2"></i></a>
                                                 </div>
                                             </div>
@@ -376,23 +396,26 @@
                                     <div class="tg-item-content-holder tg-dark image-format" data-position="bottom">
                                         <span class="tg-cats-holder tg-element-1">
                                             <a class="portfolio-category" href="#" rel="category" data-term-id="20">
-                                                <span class="tg-item-term"><%= gallery[3].event %></span>
+                                                <span class="tg-item-term">
+                                                    <%= gallery[0].images[1].event %>
+                                                </span>
                                             </a>
                                         </span>
                                         <h3 class="tg-item-title tg-element-2 title">
-                                            <a target="_self" href="#"><%= gallery[3].firstName %> &amp; <%= gallery[3].secondName %></a>
+                                            <a target="_self" href="#">
+                                                <%= gallery[0].images[1].firstName %> &amp; <%= gallery[0].images[1].secondName %>
+                                            </a>
                                         </h3>
                                         <div class="tg-item-clear"></div>
                                     </div>
                                 </div>
                             </article>
-                           
-                                <article class="tg-item tg-post-3145 tg-iso-2 f20" data-row="1" data-col="1">
+
+                            <article class="tg-item tg-post-3145 tg-iso-2 f20" data-row="1" data-col="1">
                                 <div class="tg-item-inner">
                                     <div class="tg-item-media-holder tg-light">
                                         <div class="tg-item-media-inner">
-                                            <img class="tg-item-image" alt=""
-                                                src="/gallery/<%= gallery[4].image %>" />
+                                            <img class="tg-item-image" alt="" src="/gallery/<%= gallery[1].images[1].image %>" />
                                         </div>
                                         <div class="tg-item-media-content">
                                             <div class="tg-item-overlay"></div>
@@ -400,8 +423,9 @@
                                                 <div class="tg-center-inner">
                                                     <a id="tolb-31583149"
                                                         class="tg-media-button tg-element-3 gallery-btn"
-                                                        data-tolb-src="/gallery/<%= gallery[4].image %>"
-                                                        data-tolb-type="image" data-tolb-alt="<%= gallery[4].image %>"><i
+                                                        data-tolb-src="/gallery/<%= gallery[1].images[1].image %>"
+                                                        data-tolb-type="image"
+                                                        data-tolb-alt="<%= gallery[1].images[1].image %>"><i
                                                             class="tg-icon-add-2"></i></a>
                                                 </div>
                                             </div>
@@ -410,23 +434,26 @@
                                     <div class="tg-item-content-holder tg-dark image-format" data-position="bottom">
                                         <span class="tg-cats-holder tg-element-1">
                                             <a class="portfolio-category" href="#" rel="category" data-term-id="20">
-                                                <span class="tg-item-term"><%= gallery[4].event %></span>
+                                                <span class="tg-item-term">
+                                                    <%= gallery[1].images[1].event %>
+                                                </span>
                                             </a>
                                         </span>
                                         <h3 class="tg-item-title tg-element-2 title">
-                                            <a target="_self" href="#"><%= gallery[4].firstName %> &amp; <%= gallery[4].secondName %></a>
+                                            <a target="_self" href="#">
+                                                <%= gallery[1].images[1].firstName %> &amp; <%= gallery[1].images[1].secondName %>
+                                            </a>
                                         </h3>
                                         <div class="tg-item-clear"></div>
                                     </div>
                                 </div>
                             </article>
-                         
-                                 <article class="tg-item tg-post-3147 tg-iso-2 f21 f43" data-row="1" data-col="1">
+
+                            <article class="tg-item tg-post-3147 tg-iso-2 f21 f43" data-row="1" data-col="1">
                                 <div class="tg-item-inner">
                                     <div class="tg-item-media-holder tg-light">
                                         <div class="tg-item-media-inner">
-                                            <img class="tg-item-image" alt=""
-                                                src="/gallery/<%= gallery[5].image %>" />
+                                            <img class="tg-item-image" alt="" src="/gallery/<%= gallery[2].images[1].image %>" />
                                         </div>
                                         <div class="tg-item-media-content">
                                             <div class="tg-item-overlay"></div>
@@ -434,9 +461,9 @@
                                                 <div class="tg-center-inner">
                                                     <a id="tolb-31583147"
                                                         class="tg-media-button tg-element-3 gallery-btn"
-                                                        data-tolb-src="/gallery/<%= gallery[5].image %>"
+                                                        data-tolb-src="/gallery/<%= gallery[2].images[1].image %>"
                                                         data-tolb-type="image"
-                                                        data-tolb-alt="<%= gallery[5].image %>"><i
+                                                        data-tolb-alt="<%= gallery[2].images[1].image %>"><i
                                                             class="tg-icon-add-2"></i></a>
                                                 </div>
                                             </div>
@@ -445,17 +472,21 @@
                                     <div class="tg-item-content-holder tg-dark image-format" data-position="bottom">
                                         <span class="tg-cats-holder tg-element-1">
                                             <a class="portfolio-category" href="#" rel="category" data-term-id="21">
-                                                <span class="tg-item-term"><%= gallery[5].event %></span>
+                                                <span class="tg-item-term">
+                                                    <%= gallery[2].images[1].event %>
+                                                </span>
                                             </a>
                                         </span>
                                         <h3 class="tg-item-title tg-element-2 title">
-                                            <a target="_self" href="samantha-michelle-beach-wedding.html"><%= gallery[5].firstName %> &amp;<%= gallery[5].secondName %></a>
+                                            <a target="_self" href="samantha-michelle-beach-wedding.html">
+                                                <%= gallery[2].images[1].firstName %> &amp;<%= gallery[2].images[1].secondName %>
+                                            </a>
                                         </h3>
                                         <div class="tg-item-clear"></div>
                                     </div>
                                 </div>
                             </article>
-                               
+
                         </div>
                     </div>
                 </div>
@@ -468,7 +499,7 @@
                 </div>
             </div>
         </div>
-        
+
         <footer id="footer" class="simple">
             <div class="container">
                 <div class="widg clearfix">
