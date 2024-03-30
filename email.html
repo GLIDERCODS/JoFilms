@@ -1,101 +1,4 @@
-const Banner = require('../Model/bannerModel')
-const Event = require('../Model/eventModel')
-const Gallery = require('../Model/galleryModel')
-const Portfolio = require('../Model/portfolioModel')
-const nodemailer = require('nodemailer')
-let dotenv = require("dotenv")
-dotenv.config()
-
-/* HOME PAGE */
-
-const homePageLoad = async (req, res) => {
-    try {
-        const bannerData = await Banner.find();
-
-        const events = await Event.find().limit(3);
-
-        const eventNames = events.map(event => event.event);
-
-        const gallery = await Gallery.aggregate([
-            { $match: { event: { $in: eventNames } } },
-            {
-                $group: {
-                    _id: "$event",
-                    images: { $push: { firstName: "$firstName", secondName: "$secondName", image: "$image" } }
-                }
-            },
-            { $project: { _id: 0, event: "$_id", images: { $slice: ["$images", 2] } } } // Take 2 images for each event
-        ]);
-
-        res.render("home", { events: events, gallery: gallery, bannerData: bannerData });
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-
-
-/* ABOUT PAGE */
-
-const aboutPageLoad = async (req, res) => {
-    try {
-        const bannerData = await Banner.find();
-
-        const events = await Event.find().limit(3);
-
-        const eventNames = events.map(event => event.event);
-
-        const gallery = await Gallery.aggregate([
-            { $match: { event: { $in: eventNames } } },
-            {
-                $group: {
-                    _id: "$event",
-                    images: { $push: { firstName: "$firstName", secondName: "$secondName", image: "$image" } }
-                }
-            },
-            { $project: { _id: 0, event: "$_id", images: { $slice: ["$images", 2] } } }
-        ]);
-
-        res.render("about", { events: events, gallery: gallery, bannerData: bannerData });
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-/* PROTFOLIO */
-
-const loadProtfolio = async (req, res) => {
-    try {
-        const PortfolioData = await Portfolio.findOne()
-        res.render("protfolio", { PortfolioData: PortfolioData })
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-const loadContact = async (req, res) => {
-    try {
-        res.render('contact')
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-const sendMail = async (req, res) => {
-    try {
-        const { name, email, message } = req.body;
-
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: process.env.EMAIL,
-                pass: process.env.PASS
-            }
-        });
-
-        // HTML template for the email
-        const htmlTemplate = `
-        <!doctype html>
+<!doctype html>
 <html lang="en-US">
 
 <head>
@@ -121,7 +24,7 @@ const sendMail = async (req, res) => {
                     <tr>
                         <td style="text-align:center;">
                             <a title="logo" target="_blank">
-                            <img width="120" src="https://res.cloudinary.com/dw2cscitl/jofilms/fze8sebgfpetz6qayx7n" title="logo" alt="logo">
+                            <img width="60" src="https://res.cloudinary.com/dw2cscitl/jofilms/fze8sebgfpetz6qayx7n" title="logo" alt="logo">
                           </a>
                         </td>
                     </tr>
@@ -174,36 +77,4 @@ const sendMail = async (req, res) => {
     <!--/100% body table-->
 </body>
 
-</html>`;
-
-        const mailOptions = {
-            from: email,
-            to: process.env.EMAIL,
-            subject: `New Message from ${name}`,
-            // Set HTML as the email content
-            html: htmlTemplate
-        };
-
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                console.log(error);
-                res.status(500).send('Error sending email');
-            } else {
-                console.log('Email sent: ' + info.response);
-                res.json({success:true})
-                res.status(200).send('Email sent successfully');
-            }
-        });
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-
-module.exports = {
-    homePageLoad,
-    aboutPageLoad,
-    loadProtfolio,
-    sendMail,
-    loadContact
-}
+</html>
