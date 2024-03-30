@@ -15,6 +15,7 @@ userRout.get('/',userController.homePageLoad)
 userRout.get("/loadAbout",userController.aboutPageLoad)
 userRout.get('/protfolio',userController.loadProtfolio)
 userRout.get('/UserSideGallery',UserGalleryController.loadGalleryUser)
-
+userRout.post('/contact',userController.sendMail)
+userRout.get('/contact',userController.loadContact)
 
 module.exports = userRout

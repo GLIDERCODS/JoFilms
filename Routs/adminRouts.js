@@ -32,6 +32,8 @@ adminRout.get('/gallery',auth.isLogin,galleryController.loadGallery)
 adminRout.post('/addGallery',auth.isLogin,multer.galleryMulter,galleryController.addGallery)
 adminRout.post('/deleteGallery',auth.isLogin,galleryController.deleteGallery)
 
+adminRout.post('/logout')
+
 adminRout.get("*",function(req,res){
     res.redirect("/admin")
 })

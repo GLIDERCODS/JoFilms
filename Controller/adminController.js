@@ -49,6 +49,21 @@ const loadAdminPage = async(req,res)=>{
     }
 }
 
+const logout = async (req, res) => {
+    try {
+        req.session.destroy((err) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send('Error logging out');
+            } else {
+                res.redirect('loginPage');
+            }
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Error logging out');
+    }
+}
 
 
 
@@ -56,6 +71,6 @@ module.exports = {
     loadLoginPage,
     loadAdminPage,
     verifyLogin,
-    
+    logout
     
 }
