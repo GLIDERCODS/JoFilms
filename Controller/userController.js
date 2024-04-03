@@ -71,7 +71,6 @@ const loadContact = async (req, res) => {
 const sendMail = async (req, res) => {
     try {
         const { name, email, message } = req.body;
-
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
