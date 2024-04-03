@@ -39,24 +39,9 @@ const homePageLoad = async (req, res) => {
 
 const aboutPageLoad = async (req, res) => {
     try {
-        const bannerData = await Banner.find();
-
-        const events = await Event.find().limit(3);
-
-        const eventNames = events.map(event => event.event);
-
-        const gallery = await Gallery.aggregate([
-            { $match: { event: { $in: eventNames } } },
-            {
-                $group: {
-                    _id: "$event",
-                    images: { $push: { firstName: "$firstName", secondName: "$secondName", image: "$image" } }
-                }
-            },
-            { $project: { _id: 0, event: "$_id", images: { $slice: ["$images", 2] } } }
-        ]);
-
-        res.render("about", { events: events, gallery: gallery, bannerData: bannerData });
+        
+        const gallery = await Gallery.aggregate([{$sample: {size: 10}}]);
+        res.render("about", {  gallery: gallery });
     } catch (error) {
         console.log(error);
     }
@@ -67,7 +52,9 @@ const aboutPageLoad = async (req, res) => {
 const loadProtfolio = async (req, res) => {
     try {
         const PortfolioData = await Portfolio.findOne()
-        res.render("protfolio", { PortfolioData: PortfolioData })
+        const gallery = await Gallery.aggregate([{$sample: {size: 6}}]);
+
+        res.render("protfolio", { PortfolioData: PortfolioData,gallery:gallery })
     } catch (error) {
         console.log(error);
     }

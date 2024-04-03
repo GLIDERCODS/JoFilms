@@ -27,7 +27,7 @@ document.getElementById("admin-log-submit").addEventListener("click", function (
             alertBox.style.display = "block";
             alertBox.textContent = "Oh snap! You dont have entry.";
           } else {
-            window.location.href = "/admin/home";
+            window.location.href = "/admin/banner";
           }
         })
         .catch(function (error) {

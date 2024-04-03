@@ -117,12 +117,7 @@
                                         About us
                                     </h3>
                                     <h5 class="subtitle fade-up transition-2">
-                                        We are fine-art, wedding &amp; portrait film photographers
-                                        from Oregon, with a special love for natural light,<br />
-                                        medium format film cameras &amp; redheads with freckles.
-                                        With over 5 years of experience, numerous workshops and
-                                        features in top wedding publications, I capture beauty in
-                                        the most subtle.
+                                        At JoFilms, we are passionate storytellers dedicated to capturing life's most precious moments with artistry and authenticity. With a keen eye for detail and a commitment to excellence, we strive to create timeless memories that will be cherished for a lifetime. Whether it's documenting your wedding day, embracing the beauty of nature, or embarking on adventures around the globe, we are here to turn your vision into stunning reality. Welcome to our world of creativity, where every frame tells a unique story.
                                     </h5>
                                     <img src="/User/images/logos/jofilmHashLarge.png" style="width: 20%;" class="icon fade-up transition-0" alt="" />
 
@@ -142,8 +137,7 @@
                                         <i class="icon-sun" onmouseover="this.style.color='#222'"
                                            onmouseout="this.style.color='#999'"></i>
                                         <h4 class="title">Natural Photos</h4>
-                                        <div class="text">Proin ultricies augue libero, faucibus elit elementum sed dolor
-                                            felis, cursus non diam non, finibus feugiat dui, a facilisis urna a ex magna
+                                        <div class="text"> Immerse yourself in the raw beauty of life's fleeting moments captured with authenticity and grace. From candid laughter to tender embraces, our natural photos preserve the genuine essence of every precious memory.
                                         </div>
                                     </div>
                                 </div>
@@ -154,8 +148,7 @@
                                         <i class="icon-diamond-ring" onmouseover="this.style.color='#222'"
                                            onmouseout="this.style.color='#999'"></i>
                                         <h4 class="title">Wedding Photos</h4>
-                                        <div class="text">Fusce auctor lacinia nunc, quis pellentesque dolor. Vestibulum
-                                            ante ipsum primis in faucibus orci luctus et ultrices posuere cubili
+                                        <div class="text">Step into a world of timeless romance and breathtaking elegance. Our wedding photos encapsulate the magic of your special day, weaving together love, joy, and cherished vows into exquisite visual narratives that will be treasured for generations.
                                         </div>
                                     </div>
                                 </div>
@@ -168,8 +161,7 @@
                                         <i class="icon-planet" onmouseover="this.style.color='#222'"
                                            onmouseout="this.style.color='#999'"></i>
                                         <h4 class="title">Travel Photos</h4>
-                                        <div class="text">Proin ultricies augue libero, quis faucibus elit elementum sed
-                                            dolor felis, cursus non diam non, finibus interdum posuere tempus non nulla
+                                        <div class="text">Embark on a journey across continents and cultures through the lens of our camera. Each travel photo is a captivating story waiting to unfold, inviting you to explore the wonders of the world and experience the thrill of discovery from the comfort of your screen.
                                         </div>
                                     </div>
                                 </div>
@@ -187,7 +179,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="headings text_button_modern text-center">
-                                    <h3 class="title fade-up transition-0">WE PRESENT OUR TEAM</h3>
+                                    <h3 class="title fade-up transition-0">OUR WORKS</h3>
                                 </div>
                             </div>
                         </div>
@@ -202,32 +194,26 @@
                             data-add-slides="4" data-lg-slides="4" data-md-slides="3" data-sm-slides="2"
                             data-xs-slides="1">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="team-member clearfix">
-                                        <div class="member-wrap s-back-switch">
-                                            <img src="/User/images/team04.jpg" class="s-img-switch" alt="" />
-                                            <div class="social">
-                                                <a href="https://www.facebook.com/" target="_blank" class="soc-item">
-                                                    <i class="fa fa fa-facebook-square"></i>
-                                                </a>
-                                                <a href="https://twitter.com/" target="_blank" class="soc-item">
-                                                    <i class="fa fa fa-twitter"></i>
-                                                </a>
-                                                <a href="https://www.instagram.com/" target="_blank" class="soc-item">
-                                                    <i class="fa fa fa-instagram"></i>
-                                                </a>
+                                <% gallery.forEach((data)=>{%>
+                                    
+                                    <div class="swiper-slide">
+                                        <div class="team-member clearfix">
+                                            <div class="member-wrap s-back-switch">
+                                                <img src="/gallery/<%=data.image%>" class="s-img-switch" alt="" />
+                                               
                                             </div>
-                                        </div>
-                                        <div class="member-info-wrap">
-                                            <div class="member-info">
-                                                <h5 class="member-name">Blanche Fields</h5>
-                                                <div class="member-position">
-                                                    Amazon, Web Developer
+                                            <div class="member-info-wrap">
+                                                <div class="member-info">
+                                                    <!-- <h5 class="member-name">Blanche Fields</h5>
+                                                    <div class="member-position">
+                                                        Amazon, Web Developer
+                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <%}) %>
+                                
                                 
                             </div>
                         </div>
@@ -268,12 +254,10 @@
                             <div class="socials">
                                 <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
                                 <a href="https://twitter.com/?lang=en" class="fa fa-twitter"></a>
-                                <a href="https://www.instagram.com/" class="fa fa-instagram"></a>
+                                <a href="https://www.instagram.com/jofilms_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="fa fa-instagram"></a>
                                 <a href="https://www.behance.net/" class="fa fa-behance"></a>
                             </div>
-                            <div class="copy_content text">
-                                © JoFilms Studio 2019. All Right Reserved.
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
@@ -298,7 +282,7 @@
                             <h3 class="wiso-widget-subscribe">Subscribe</h3>
                             <div role="form" class="wpcf7" id="wpcf7-f3211-o1" lang="en" dir="ltr">
                                 <div class="screen-reader-response"></div>
-                                <form action="https://wiso-html.foxthemes.me/wiso/about/#wpcf7-f3211-o1" method="post"
+                                <form action="/contact" method="get"
                                     class="wpcf7-form" novalidate="novalidate">
                                     <p>
                                         <span class="wpcf7-form-control-wrap email">
@@ -310,7 +294,6 @@
                                     <div class="wpcf7-response-output wpcf7-display-none"></div>
                                 </form>
                             </div>
-                            <h3 class="wiso-widget-descr">No spam, we promise</h3>
                         </div>
                     </div>
                 </div>

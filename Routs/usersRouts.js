@@ -18,4 +18,8 @@ userRout.get('/UserSideGallery',UserGalleryController.loadGalleryUser)
 userRout.post('/contact',userController.sendMail)
 userRout.get('/contact',userController.loadContact)
 
+userRout.get('*',(req,res)=>{
+     res.render("404")
+})
+
 module.exports = userRout

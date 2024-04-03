@@ -15,7 +15,6 @@ adminRout.set("views","./View/admin")
 
 adminRout.get('/',auth.isLogout,adminController.loadLoginPage)
 adminRout.post('/verifyLogin',adminController.verifyLogin)
-adminRout.get('/home',auth.isLogin,adminController.loadAdminPage)
 
 adminRout.get('/banner',auth.isLogin,bannerController.loadBanner)
 adminRout.post('/addBanner',auth.isLogin,multer.bannerMulter,bannerController.addBanner);
@@ -32,7 +31,7 @@ adminRout.get('/gallery',auth.isLogin,galleryController.loadGallery)
 adminRout.post('/addGallery',auth.isLogin,multer.galleryMulter,galleryController.addGallery)
 adminRout.post('/deleteGallery',auth.isLogin,galleryController.deleteGallery)
 
-adminRout.post('/logout')
+adminRout.get('/logout',auth.isLogin,adminController.logout)
 
 adminRout.get("*",function(req,res){
     res.redirect("/admin")
