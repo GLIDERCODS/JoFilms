@@ -31,6 +31,9 @@ adminRout.get('/gallery',auth.isLogin,galleryController.loadGallery)
 adminRout.post('/addGallery',auth.isLogin,multer.galleryMulter,galleryController.addGallery)
 adminRout.post('/deleteGallery',auth.isLogin,galleryController.deleteGallery)
 
+adminRout.get('/forgetOTP',adminController.sendForgetOtp)
+adminRout.post('/changePassword',adminController.changePassword)
+
 adminRout.get('/logout',auth.isLogin,adminController.logout)
 
 adminRout.get("*",function(req,res){
