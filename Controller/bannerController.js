@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const Banner = require("../Model/bannerModel")
 
 /* LOAD BANNER PAGE */
@@ -39,6 +41,15 @@ const addBanner = async (req, res) => {
   const deletBanner = async(req,res)=>{
     try {
       const bannerId = req.body.bannerId;
+      const banner = await Banner.findOne({ _id: bannerId });
+    if (!banner) {
+      return res.status(404)
+    }
+
+    const imagePath = path.join(__dirname, '../Public/banner', banner.image);
+    if (fs.existsSync(imagePath)) {
+      fs.unlinkSync(imagePath);
+    }
       await Banner.deleteOne({ _id: bannerId });
       res.json({ success: true });
     } catch (error) {

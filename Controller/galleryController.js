@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const Gallery = require('../Model/galleryModel')
 const Event = require('../Model/eventModel')
 
@@ -60,6 +62,16 @@ const addGallery = async (req, res) => {
 const deleteGallery = async (req, res) => {
      try {
           const imageId = req.body.imageId;
+          const gallery = await Gallery.findOne({ _id: imageId });
+
+          if (!gallery) {
+               return res.status(404)
+          }
+          
+          const imagePath = path.join(__dirname, '../Public/gallery', gallery.image);
+          if (fs.existsSync(imagePath)) {
+               fs.unlinkSync(imagePath);
+          }
           await Gallery.deleteOne({ _id: imageId });
           res.json({ success: true });
      } catch (error) {
