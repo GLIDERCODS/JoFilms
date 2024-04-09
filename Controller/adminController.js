@@ -6,14 +6,46 @@ const bcrypt = require('bcrypt')
 
 /* LOGIN PAGE */
 function generateOTP(length) {
-    const min = 100000; // Minimum value (inclusive)
-    const max = 999999; // Maximum value (inclusive)
+    const min = 10000; // Minimum value (inclusive)
+    const max = 99999; // Maximum value (inclusive)
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 const loadLoginPage = async (req, res) => {
     try {
         res.render("loginPage")
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const loadOtpPage = async (req,res)=>{
+    try {
+        res.render("otpPage")
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const VerifyOtp = async(req,res)=>{
+    try {
+        const otp  = parseInt(req.body.otp)
+        console.log(otp)
+        console.log(typeof(otp));
+        console.log(req.session.otp);
+        if (otp === req.session.otp) {
+            res.json({ success: true });
+        } else {
+            res.json({ success: false });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const changePasswordPage = async(req,res)=>{
+    try {
+        res.render("changePassPage")
     } catch (error) {
         console.log(error);
     }
@@ -129,8 +161,9 @@ const sendForgetOtp = async (req, res) => {
                 console.log(error);
                 res.status(500).send('Error sending email');
             } else {
+                req.session.otp = otp
                 console.log('Email sent: ' + info.response);
-                res.json({ success: true })
+                res.redirect('/admin/loadOtp')
                 res.status(200).send('Email sent successfully');
             }
         });
@@ -150,9 +183,11 @@ const verifyLogin = async (req, res) => {
         const adminData = await Admin.findOne({ email: email })
         if (adminData) {
             if (adminData.email === email && adminData.is_admin == 1) {
-                if (await bcrypt.compare(password,adminData.password)) {
+               const hashedpass =  await bcrypt.compare(password,adminData.password)
+               console.log(hashedpass);
+                if (hashedpass) {
                     req.session.admin_Id = email
-                    res.json({ wrongPass: true })
+                    res.json({ wrongPass: false })
                 } else {
                     res.json({ wrongPass: true })
                 }
@@ -171,11 +206,22 @@ const verifyLogin = async (req, res) => {
 
 const changePassword = async(req, res) => {
     try {
-        const { password } = req.body
-        bcryptedPassword = await bcrypt.hash(password,10)
+        const password = req.body.password;
+        const cnfmPass = req.body.cnfmPass;
+        
+        console.log("in of changing");
+        console.log(password);
+        console.log(cnfmPass);
+        if(password === cnfmPass){
+            bcryptedPassword = await bcrypt.hash(password,10)
         console.log(bcryptedPassword);
-        const a = await Admin.updateOne({ $set: { password: bcryptedPassword } })
+        await Admin.updateOne({ $set: { password: bcryptedPassword } })
         res.json({success:true})
+        }else{
+            console.log("wrong");
+            res.json({success:false})
+        }
+        
     } catch (error) {
         console.log(error);
     }
@@ -214,5 +260,8 @@ module.exports = {
     verifyLogin,
     logout,
     sendForgetOtp,
-    changePassword
+    changePassword,
+    loadOtpPage,
+    VerifyOtp,
+    changePasswordPage
 }

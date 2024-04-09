@@ -31,7 +31,10 @@ adminRout.get('/gallery',auth.isLogin,galleryController.loadGallery)
 adminRout.post('/addGallery',auth.isLogin,multer.galleryMulter,galleryController.addGallery)
 adminRout.post('/deleteGallery',auth.isLogin,galleryController.deleteGallery)
 
+adminRout.get('/loadOtp',auth.isLogout,adminController.loadOtpPage)
 adminRout.get('/forgetOTP',adminController.sendForgetOtp)
+adminRout.post('/verify-otp',adminController.VerifyOtp)
+adminRout.get('/change-password-page',auth.isLogout,adminController.changePasswordPage)
 adminRout.post('/changePassword',adminController.changePassword)
 
 adminRout.get('/logout',auth.isLogin,adminController.logout)

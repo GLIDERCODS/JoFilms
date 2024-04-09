@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=100%, initial-scale=1.0">
+    <title>Otp-verification</title>
+</head>
+<body>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Inter;
+}
+body {
+  width: 100%;
+  background: #1a2226;
+  color: white;
+}
+section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.container {
+  border-radius: 12px;
+  background-color: rgb(19, 25, 28);
+  width: 90%;
+  max-width: 500px;
+  padding: 50px 20px;
+  text-align: center;
+}
+.title {
+  font-size: 25px;
+  margin-bottom: 30px;
+}
+#otp-form {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+#otp-form input {
+  border: none;
+  background-color: #121517;
+  color: white;
+  font-size: 32px;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  max-width: 70px;
+  height: 70px;
+  border-radius: 4px;
+  outline: 2px solid rgb(66, 66, 66);
+}
+#otp-form input:focus-visible {
+  outline: 2px solid royalblue;
+}
+#otp-form input.filled {
+  outline: 2px solid rgb(7, 192, 99);
+}
+#verify-btn {
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 30px;
+  background: royalblue;
+  color: white;
+  padding: 7px 10px;
+  border-radius: 4px;
+  font-size: 16px;
+  border: none;
+}
+    </style>
+    <section>
+        <div class="container">
+          <h1 class="title">Enter OTP</h1>
+          <p>Enter the 5 digit OTP sent to your email</p><br>
+          <form id="otp-form">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+            <input type="text" class="otp-input" maxlength="1">
+          </form>
+          <button id="verify-btn">Verify OTP</button>
+        </div>
+      </section>
+      <!-- Add the CDN link for Axios -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- Add the CDN link for Swal -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    document.getElementById('verify-btn').addEventListener('click', async function() {
+        const otp = Array.from(document.querySelectorAll('.otp-input')).map(input => input.value).join('');
+        console.log(otp)
+        try {
+            const response = await axios.post('/admin/verify-otp', { otp });
+            const data = response.data;
+            if (data.success) {
+                // Redirect to another page upon successful verification
+                window.location.href = '/admin/change-password-page';
+            } else {
+                // Show error message using Swal upon unsuccessful verification
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Invalid OTP. Please try again.'
+                });
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            // Show error message using Swal for any other errors
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong. Please try again later.'
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
